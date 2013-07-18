@@ -80,8 +80,6 @@ yourprojectname.nudgepad.com/
 
 If you upload a file like "index.html" to this folder, then http://yourprojectname.nudgepad.com/index.html will be the homepage of your project.
 
-If you don't upload an index.html file, then yourprojectname.nudgepad.com/private/pages/home.space will be the homepage of your project, and you can edit that visually with the Prototype tool.
-
 That folder called "private/" in your project directory, contains all the NudgePad specific data if you
 are using the NudgePad tools to build your project. However, you are free to completely ignore this folder and just use NudgePad as a simple web server.
 

@@ -1,3 +1,7 @@
+Prototype.trackShortcuts  = function (key) {
+  mixpanel.track('I used the Prototype keyboard shortcut ' +  key)
+}
+
 
 /**
  * We manually add some shortcuts to certain functions.
@@ -9,7 +13,7 @@ Prototype.shortcuts['meta+shift+p'] = Prototype.stage.selection.patchPrompt
 Prototype.shortcuts['ctrl+a'] = Prototype.stage.selectAll
 Prototype.shortcuts['meta+a'] = Prototype.stage.selectAll
 
-Prototype.shortcuts['meta+p'] = function () { window.open(Prototype.stage.activePage, 'published') }
+Prototype.shortcuts['meta+p'] = function () { window.open(Prototype.stage.activePage + '.html?' + new Date().getTime(), 'published') }
 
 
 Prototype.shortcuts['meta+shift+left'] = Prototype.stage.selection.alignLeft

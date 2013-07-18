@@ -8,52 +8,8 @@
   <style type="text/css" id="PrototypeRemoteSelections"></style>
 </div>
 
-<div id="PrototypeBar" style="display: none;">
-
-  <div title="menu" id="PrototypeBarMenuButton"></div>
-  
-  <div title="Text" id="PrototypeTextComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/text.png"></div>
-
-  <div title="Block" id="PrototypeBlockComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/block.png"></div>
-
-  <div title="Image" id="PrototypeImageComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/image.png"></div>
-
-  <div title="Sticky" id="stickyComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/sticky.png"></div>
-  
-  <div title="Advanced" id="AdvancedComponent" style="display:none;" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/advanced.png"></div>
-  
-  <div id="PrototypeViewSwitcher" onclick="Prototype.stage.toggleView()">Device</div>
-  
-  <div id="PrototypeTimelineHolder">
-    <span class="PrototypeTimeline" id="PrototypeTimelinePosition" ondblclick="Prototype.clearTimelinePrompt()"></span>
-    <input class="PrototypeTimeline" id="PrototypeTimeline" type="range" min="0" max="100" step="1" onclick="Prototype.stage.goto($(this).val())" value="100">
-    <script type="text/javascript">
-      $('#PrototypeTimeline').on('slide', function () {
-        Prototype.stage.goto($(this).val())
-    })</script>
-    
-  </div>
-  
-  <div id="PrototypeTabs"><span>Index</span></div>
-  
-</div>
-
 <textarea id="PrototypeCodePanel"></textarea>
 
-<div id="PrototypeMenu">
-	<div onclick="window.open(Prototype.stage.activePage,'published')">Visit</div>
-  <div onclick="Prototype.blank()">New</div>
-  <div onclick="Prototype.duplicatePage()">Duplicate</div>
-  <div onclick="Prototype.renamePrompt()">Rename</div>
-  <div onclick="Prototype.deletePage()">Delete</div>
-  <div onclick="Prototype.importPrompt()">Import</div>
-  <div onclick="Launcher.open('Home')">Home</div>
-</div>
-
-<div id="PrototypeComponentsBar">
-	<div id="PrototypeComponentsBarUploadButton" class="PrototypeImageComponentOptions"><span>Upload</span><iframe src="/nudgepad.images.upload" allowtransparency="true" frameborder="0px" width="100%" height="100%" scrolling="no" style="position: absolute; bottom: 0px; left: 0px;"></iframe></div>
-  <div id="PrototypeComponentsList"></div>
-  <div id="PrototypeImagecomponentsList" class="PrototypeImageComponentOptions"></div>
-</div>
-
 <div id="PrototypeDimensions"></div>
+
+

@@ -24,15 +24,7 @@ function Install (app) {
 
   // Create pages folder
   if (!fs.existsSync(app.paths.pages))
-    fs.mkdirSync(app.paths.pages)  
-  
-  // Create default home page
-  if (!fs.existsSync(app.paths.pages + 'home.space'))
-    fs.writeFileSync(app.paths.pages + 'home.space', '', 'utf8')
-  
-  // Create default home timeline
-  if (!fs.existsSync(app.paths.timelines + 'home.space'))
-    fs.writeFileSync(app.paths.timelines + 'home.space', '', 'utf8')
+    fs.mkdirSync(app.paths.pages)
   
 
 }

@@ -6,31 +6,21 @@ Prototype.set('description', 'Design pages for your project.')
 Prototype.page = new Page()
 Prototype.edge = new Space()
 Prototype.stage = {}
-Prototype.stage.activePage = 'home'
+Prototype.stage.activePage = 'index'
 // store.get('activePage')
 Prototype.stage.selection = {}
 
 Prototype.blank = function () {
 
-  var page = new Space(
-'head\n\
- tag head\n\
- scraps\n\
-  title\n\
-   tag title\n\
-   content Untitled\n\
-  stylesheet\n\
-   tag link\n\
-   href project.css\n\
-   rel stylesheet\n\
-body\n\
- tag body\n\
- scraps\n')
+  var page = new Space($('#PrototypeBlankPage').text())
   var pageName = prompt('Name your page', Prototype.nextName())
   if (!pageName)
     return null
   Prototype.create(pageName, page)
-  
+}
+
+Prototype.blurThis = function (){
+  $(this).blur()
 }
 
 /**
@@ -40,14 +30,11 @@ Prototype.clearTimelinePrompt = function () {
   
   if (!confirm("Are you sure you want to erase the history of this page?"))
     return false
-  
-  
-  
-  // Send Commit to Server
-  Project.delete('timelines ' + Prototype.stage.activePage)
-  Project.stage.setTimeline()
-  Prototype.trigger('selection')
-  return true
+
+  var page = Prototype.stage.activePage
+  Prototype.stage.close()
+  Project.delete('timelines ' + page)
+  Prototype.stage.open(page)
 }
 
 /**
@@ -91,8 +78,6 @@ Prototype.create = function (name, template) {
  */
 Prototype.deletePage = function (name) {
   name = name || Prototype.stage.activePage
-  if (name === 'home')
-    return Flasher.error('You cannot delete the home page')
   // If its the currently open page, open the previous page first
   if (Prototype.stage.activePage === name)
     Prototype.stage.back()
@@ -270,6 +255,10 @@ Prototype.ondrop = function(e) {
   e.preventDefault()
 }
 
+Prototype.stopProp = function(event) {
+  event.stopPropagation()
+}
+
 Prototype.stopPropagation = function(event) {
   if (event.originalEvent.touches.length > 1) {
     event.stopPropagation()
@@ -329,9 +318,6 @@ Prototype.renamePage = function (newName) {
   if (!newName.length)
     return Flasher.error('Name cannot be blank')
   
-  if (oldName == 'home')
-    return Flasher.error('You cannot rename the home page.')
-  
   // page already exists
   if (Project.get('pages ' + newName))
     return Flasher.error('A page named ' + newName + ' already exists.')  
@@ -351,6 +337,10 @@ Prototype.renamePrompt = function () {
   var name = prompt('Enter a new name', Prototype.stage.activePage)
   if (name)
     Prototype.renamePage(name)
+}
+
+Prototype.returnFalse = function (){
+  return false
 }
 
 /**

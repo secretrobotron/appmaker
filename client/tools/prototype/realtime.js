@@ -9,7 +9,7 @@ Prototype.realtime = function (key, value) {
   var commit = value.get('values')
 //  console.log(commit.toString())
   
-  Prototype.stage.updateTimeline()
+  Prototype.trigger('step')
   
 //  if (behind)
 //    return true
@@ -45,10 +45,10 @@ if (patch.get('pages ' + Prototype.stage.activePage) === '')
     return true    
 
   if (behind)
-    return Prototype.stage.updateTimeline()
+    return Prototype.trigger('step')
 
   if ($('input:focus, div:focus, textarea:focus, a:focus').length)
-    return Prototype.stage.updateTimeline()
+    return Prototype.trigger('step')
 
   // Todo: this breaks if you are in content editable
   Prototype.stage.redo()

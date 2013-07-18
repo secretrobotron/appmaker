@@ -19,10 +19,9 @@ var Cookie = parseCookie(document.cookie)
  */
 nudgepad.main = function () {
   
-  var activePage = store.get('activePage') || 'home'
-  $.get('/nudgepad.project', { activePage : activePage}, function (space) {
+  $.get('/nudgepad.project', function (space) {
     Project._patch(new Space(space))
-    
+    Project._patch('timelines', new Space())
     
     // We do this here because chrome is weird
     // Revert to a previously saved state

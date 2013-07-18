@@ -69,35 +69,50 @@ Prototype.images.parseBackgroundUrl = function (url) {
   return url.split(/(\(|\))/).slice(2)[0]
 }
 
-/**
- * Downloads the latest list of images from server and stores
- * it in a property which is used to render the components.
- */
-Prototype.images.images = new Space()
 Prototype.images.updateList = function () {
+  $('#PrototypeImagesList').html('')
   $.get('/nudgepad.explorer.public', {}, function (space) {
-    var dropImageDiv = ''
-    Prototype.images.images = new Space(space)
-    Prototype.images.images.each(function (key, value) {
+    new Space(space).each(function (key, value) {
+      // we add the &nbsp; to give it a line height
+      // todo: use flex box to get vertical align
       if (Prototype.images.isImage(key))
-        dropImageDiv += '<div class="PrototypeImageThumbDrop">&nbsp;<img src="/'+ key +'">&nbsp;</div>'
+        $('#PrototypeImagesList').append('<div class="Image">&nbsp;<img src="/'+ key +'">&nbsp;</div>')
     })
-
-    $('#PrototypeImagecomponentsList').html(dropImageDiv)
-    
   })
 }
 
 
 Prototype.on('open', function () {
   // When an image is uploaded
-  Project.on('uploadComplete', Prototype.images.updateList)
+//  Project.on('uploadComplete', Prototype.images.updateList)
   Project.on('file', Prototype.images.updateList)
+  
 })
+
 Prototype.on('close', function () {
   // When an image is uploaded
-  Project.off('uploadComplete', Prototype.images.updateList)
+//  Project.off('uploadComplete', Prototype.images.updateList)
   Project.off('file', Prototype.images.updateList)
+})
+
+Prototype.on('firstOpen', function () {
+  
+  $('#PrototypeImagesList').on('tap', '.Image img', function() {
+    var imageY = ($('#PrototypeStage').height() / 2) - 130
+    var imageX = 100
+    Prototype.stage.insert('images\n style\n  position absolute\n  top ' + imageY +'\n  left ' + imageX + '\n tag img\n src ' + $(this).attr('src'))
+  })
+  
+  $('#PrototypeImagesList').on('slidestart', '.Image img', function() {
+    Prototype.stage.dragAndDrop('images\n style\n  position absolute\n  top 0px\n  left 0px\n tag img\n src ' + $(this).attr('src'))
+    mixpanel.track('I dropped an image component')
+  })
+  
+  $('#PrototypeImagesRibbon').on('mousedown slide slidestart', function (event) {
+    event.stopPropagation()
+  })
+  
+  
 })
 
 Prototype.on('firstOpen', Prototype.images.updateList)

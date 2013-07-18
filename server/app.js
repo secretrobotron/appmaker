@@ -206,19 +206,14 @@ app.use('/nudgepad/', express.static(clientPath.replace(/\/$/,''), { maxAge: 315
 
 /*********** public ***********/
 app.use('/private/', function (req, res) {
-  return res.send('Sorry, it\'s private here.', 404)
+  return res.send('Sorry, it\'s private here.', 400)
 })
 
 require('./login.js')(app)
 // Do this after /nudgepad/, so the login scripts get through fine.
 app.use('/', app.privateCheck)
 
-// Make sure this is first so an index.html will take precedence
-// over a private/pages/home
 app.use('/', express.static(app.paths.project, { maxAge: 31557600000 }))
-
-/********** blog *************/
-require('./blog.js')(app)
 
 /********** surveys *************/
 require('./surveys.js')(app)
@@ -291,22 +286,6 @@ if (app.development) {
   app.watchDir(clientPath + 'core')
 }
 
-/*********** sendPage method ************/
-app.pageOptions = {
-  beautify : true
-}
-
-app.sendPage = function(req, res, name) {
-  
-  var scraps = app.Project.get('pages ' + name)
-  var page = new Page(scraps)
-  var context = {}
-  context.project = app.Project
-  context.request = req
-  return res.send(page.toHtml(context, app.pageOptions))
-}
-
-
 require('./project.js')(app)
 require('./backup.js')(app)
 require('./explorer.js')(app)
@@ -354,10 +333,8 @@ require('./updateEmail.js')(app)
 require('./logout.js')(app)
 require('./logs.js')(app)
 require('./clear.js')(app)
-require('./home.js')(app)
 require('./stats.js')(app)
 require('./import.js')(app)
-require('./pages.js')(app)
 
 
 /*********** Eval any custom code ***********/
@@ -386,20 +363,12 @@ loadPackages()
 
 /*********** ! ***********/
 app.use('/', function (req, res, next) {
-  
 
-  var page = app.Project.get('pages').get('notFound')
-  if (!page)
-    return res.send('Not found', 404)
+  if (fs.exists(app.paths.project + 'notFound.html'))
+    return res.sendfile(app.paths.project + 'notFound.html', 404)
   
-  page = new Page(page.values)
-  return res.send(page.toHtml(), 404)
-  
-  
+  return res.send('Not found', 404)
 })
-
-
-
 
 /********* START SERVER **********/ 
 

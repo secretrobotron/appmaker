@@ -52,13 +52,17 @@ Prototype.stage.commit = function () {
   // A commit always advances the position index to the edge.
   Prototype.stage.version = Prototype.stage.timeline.keys.length
   
-  Prototype.stage.updateTimeline()
-  
   Prototype.trigger('selection')
   Prototype.trigger('commit')
+  Prototype.trigger('step')
   
   Project.set('pages ' + Prototype.stage.activePage, new Space(Prototype.page.toString()))
   Project.append('timelines ' + Prototype.stage.activePage + ' ' + timestamp, commit)
+  var html = new Page(Prototype.page.toString())
+  // todo: clean up published HTML
+  
+  Explorer.set(Prototype.stage.activePage + '.html', html.toHtml())
+  
   return diff
 }
 
@@ -162,8 +166,7 @@ Prototype.stage.goto = function (version) {
       Prototype.page.patchOrder(orderPatch.toString())
     Prototype.stage.version++
   }
-  // Todo: fire an event and have timeline subscribe to that event.
-  Prototype.stage.updateTimeline()
+  Prototype.trigger('step')
   Prototype.stage.render()
   Prototype.stage.selection.restore()
   Prototype.trigger('stage')
@@ -303,18 +306,22 @@ Prototype.stage.open = function (name) {
 
   Prototype.stage.selection.clear()
   
+  Prototype.stage.openTimeline(name)
+  
   // Page change stuff
   Prototype.stage.activePage = name
   store.set('activePage', Prototype.stage.activePage)
   Screen.set('page', Prototype.stage.activePage)
   
-  Prototype.stage.reload()
+
+  Prototype.edge = page
+  Prototype.page = new Page(page.toString())
+  Prototype.stage.version = Prototype.stage.timeline.length()
+
   Prototype.stage.render()
-  Prototype.stage.updateTimeline()
   
+  Prototype.trigger('step')
   Prototype.trigger('page')
-  Prototype.trigger('selection')
-  Prototype.trigger('ready')
   return ''
   
 }
@@ -332,21 +339,6 @@ Prototype.stage.render = function () {
   Prototype.page.render()
   Prototype.grid.create()
   Prototype.updateSelections()
-}
-
-Prototype.stage.reload = function () {
-  var name = Prototype.stage.activePage
-  var page = Project.get('pages ' + name)
-  Prototype.edge = page
-  Prototype.page = new Page(page.toString())
-  
-  // if no timeline, create a blank one
-  // todo: think harder about what the hell this will do
-  // If no timeline, but yes edge, make the edge the first commit
-  // i dont like this
-  Prototype.stage.setTimeline(name)
-  Prototype.stage.version = Prototype.stage.timeline.keys.length
-  
 }
 
 Prototype.stage.reset = function () {
@@ -381,7 +373,7 @@ Prototype.stage.selectAll = function () {
 /**
  * @return {object} Pointer to timeline object
  */
-Prototype.stage.setTimeline = function (name) {
+Prototype.stage.openTimeline = function (name) {
   
   if (Project.get('timelines ' + name)) {
     Prototype.stage.timeline = Project.get('timelines ' + name)
@@ -397,7 +389,7 @@ Prototype.stage.setTimeline = function (name) {
   })
   
   request.done(function (msg) {
-    Project.create('timelines ' + name, new Space(msg))
+    Project._set('timelines ' + name, new Space(msg))
   })
   
   request.fail(function () {
@@ -455,7 +447,7 @@ Prototype.stage.views = new Space({
   }
 })
 
-Prototype.stage.toggleView = function () {
+Prototype.stage.toggleDevice = function () {
   
   Prototype.stage.currentView = Prototype.stage.views.next(Prototype.stage.currentView)
   Prototype.stage.views.get(Prototype.stage.currentView)()
@@ -483,27 +475,10 @@ Prototype.stage.clearOnTap = function (event) {
 Prototype.stage.onresize = function (event) {
   Prototype.stage.views.get(Prototype.stage.currentView)()
   $('#PrototypeStageBody').width()
-  if ($('#PrototypeComponentsBar:visible').length)
+  if ($('.PrototypeRibbon:visible').length)
     $('#PrototypeStage').height($(window).height() - 122)
   else 
     $('#PrototypeStage').height($(window).height() - 40)
 }
 
-Prototype.on('commit', Prototype.stage.expand)
-
-Prototype.on('close', function () {
-  $("#PrototypeStage").off("tap", Prototype.stage.clearOnTap)
-  $(window).off('resize', Prototype.stage.onresize)
-  
-})
-
-Prototype.on('ready', function () {
-  Prototype.stage.expand()
-  Prototype.stage.views.get(Prototype.stage.currentView)()
-  $('#PrototypeStageBody').width() // Force repaint
-  $("#PrototypeStage").on("tap", Prototype.stage.clearOnTap)
-  $(window).on('resize', Prototype.stage.onresize)
-  Prototype.stage.reset()
-
-})
 

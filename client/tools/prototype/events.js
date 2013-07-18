@@ -1,7 +1,13 @@
-
 Prototype.isFirstOpen = true
 
 Prototype.on('page', Prototype.updateTabs)
+
+Prototype.on('step', Prototype.stage.updateTimeline)
+
+Prototype.on('ready', function () {
+  // We dont use the default tool convention
+  $('#Prototype').hide()
+})
 
 Prototype.on('open', function () {
 
@@ -11,6 +17,8 @@ Prototype.on('open', function () {
   
   Screens.on('change', Prototype.updateSelections)
   Screens.on('change', Prototype.updateTabs)
+  
+  Project.on('delete', Prototype.updateTabs)
   
   Lasso.selector = '#PrototypeStageBody .scrap:visible'
   $(document).on('lasso', '.scrap', function () {
@@ -26,9 +34,12 @@ Prototype.on('open', function () {
   // Prevent Images from dragging on Firefox
   $(document).on('dragstart', 'img', function(event) { event.preventDefault()})
   
-  var page = store.get('activePage') || 'home'
+  var page = store.get('activePage') || 'index'
   if (!Project.get('pages ' + page))
-    page = 'home'
+    page = 'index'
+  // Create an index page.
+  if (!Project.get('pages ' + page))
+    Prototype.create('index')
   Prototype.stage.open(page)
   
   if (!navigator.userAgent.match(/iPad|iPhone|iPod/i)) {
@@ -47,8 +58,6 @@ Prototype.on('open', function () {
   $("body").on("keydown", Prototype.onkeydown)
 
   Events.shortcut.shortcuts = Prototype.shortcuts
-  
-  
 
 
   if ( navigator.userAgent.match(/(iPad|iPhone|iPod)/i) ) {
@@ -82,6 +91,8 @@ Prototype.on('close', function () {
   Screens.off('change', Prototype.updateTabs)
   $('#PrototypeStage').off('click', Prototype.pen.insertTextBlock)
   
+  Project.off('delete', Prototype.updateTabs)
+  
   Prototype.stage.close()
 
   if (!navigator.userAgent.match(/iPad|iPhone|iPod/i))
@@ -113,19 +124,6 @@ Prototype.on('close', function () {
   
 })
 
-Prototype.on('ready', function () {
-  $('#Prototype').hide()
-})
-
-
-Prototype.returnFalse = function (){
-  return false
-}
-
-Prototype.blurThis = function (){
-  $(this).blur()
-}
-
 Prototype.on('open', function () {
   
   // Todo: refactor
@@ -140,6 +138,9 @@ Prototype.on('open', function () {
   $(document).on('mousedown click','input.scrap,textarea.scrap', Prototype.returnFalse)
   $(document).on('focus', 'input.scrap,textarea.scrap', Prototype.blurThis)
   
+  $("#PrototypeStage").on("tap", Prototype.stage.clearOnTap)
+  $(window).on('resize', Prototype.stage.onresize)
+  
 })
 
 Prototype.on('selection', Prototype.broadcastSelection)
@@ -153,12 +154,24 @@ Prototype.on('close', function () {
   // When editing input blocks, prevent them from taking focus
   $(document).off('mousedown click','input.scrap,textarea.scrap', Prototype.returnFalse)
   $(document).off('focus', 'input.scrap,textarea.scrap', Prototype.blurThis)
+  
+  $("#PrototypeStage").off("tap", Prototype.stage.clearOnTap)
+  $(window).off('resize', Prototype.stage.onresize)
 
 })
 
-Prototype.trackShortcuts  = function (key) {
-  mixpanel.track('I used the Prototype keyboard shortcut ' +  key)
-}
+Prototype.on('commit', Prototype.stage.expand)
+
+Prototype.on('page', function () {
+  Prototype.stage.expand()
+  Prototype.stage.views.get(Prototype.stage.currentView)()
+  $('#PrototypeStageBody').width() // Force repaint
+  Prototype.stage.reset()
+
+})
+
+
+
 
 
 

@@ -29,6 +29,7 @@ startProject () {
   echo About to start $domain 1>&2
   if isMac
     then
+      # create app.log.txt if it does not exist for mon
       touch $projectsPath/$domain/private/app.log.txt
       mon -d -l $projectsPath/$domain/private/app.log.txt -p $projectsPath/$domain/private/projectPid.txt -m $projectsPath/$domain/private/monPid.txt "node app.js $domain $PORT"
     else

@@ -78,12 +78,13 @@
     <script type="text/javascript" src="/nudgepad/tools/home/home.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/Prototype.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Autokey.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/prototype/js/Bar.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/CodePanel.js"></script>
-    <script type="text/javascript" src="/nudgepad/tools/prototype/js/ComponentsBar.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/prototype/js/ComponentsRibbon.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/ContentEditor.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/EditHandle.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Grid.js"></script>
-    <script type="text/javascript" src="/nudgepad/tools/prototype/js/Images.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/prototype/js/ImagesRibbon.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/jquery.insertAt.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/jquery.owner.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/jquery.scrap.js"></script>
@@ -93,7 +94,6 @@
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/OnPaste.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Page.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Pen.js"></script>
-    <script type="text/javascript" src="/nudgepad/tools/prototype/js/PrototypeBar.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Scrap.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/ScrollMinimal.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Selection.js"></script>
@@ -101,7 +101,6 @@
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/StretchHandle.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/StyleEditor.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/js/Tabs.js"></script>
-    <script type="text/javascript" src="/nudgepad/tools/prototype/components.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/events.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/Shortcuts.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/prototype/realtime.js"></script>
@@ -347,21 +346,29 @@
   <style type="text/css" id="PrototypeRemoteSelections"></style>
 </div>
 
+<textarea id="PrototypeCodePanel"></textarea>
+
+<div id="PrototypeDimensions"></div>
+
+
+<div id="PrototypeMenu">
+	<div onclick="window.open(Prototype.stage.activePage + '.html?' + new Date().getTime(),'published')">Visit</div>
+  <div onclick="Prototype.blank()">New</div>
+  <div onclick="Prototype.duplicatePage()">Duplicate</div>
+  <div onclick="Prototype.renamePrompt()">Rename</div>
+  <div onclick="Prototype.deletePage()">Delete</div>
+  <div onclick="Prototype.importPrompt()">Import</div>
+  <div onclick="Launcher.open('Home')">Home</div>
+</div>
 <div id="PrototypeBar" style="display: none;">
 
   <div title="menu" id="PrototypeBarMenuButton"></div>
-  
-  <div title="Text" id="PrototypeTextComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/text.png"></div>
 
-  <div title="Block" id="PrototypeBlockComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/block.png"></div>
+  <div title="Drop components onto your page" id="PrototypeComponentsTab" class="PrototypeBarTab"><img src="/nudgepad/tools/prototype/images/categories/sticky.png"></div>
 
-  <div title="Image" id="PrototypeImageComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/image.png"></div>
-
-  <div title="Sticky" id="stickyComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/sticky.png"></div>
+  <div title="Drop images onto your page" id="PrototypeImageTab" class="PrototypeBarTab"><img src="/nudgepad/tools/prototype/images/categories/image.png"></div>
   
-  <div title="Advanced" id="AdvancedComponent" style="display:none;" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/advanced.png"></div>
-  
-  <div id="PrototypeViewSwitcher" onclick="Prototype.stage.toggleView()">Device</div>
+  <div id="PrototypeDeviceSwitcher" onclick="Prototype.stage.toggleDevice()">Device</div>
   
   <div id="PrototypeTimelineHolder">
     <span class="PrototypeTimeline" id="PrototypeTimelinePosition" ondblclick="Prototype.clearTimelinePrompt()"></span>
@@ -373,29 +380,101 @@
     
   </div>
   
-  <div id="PrototypeTabs"><span>Index</span></div>
+  <div id="PrototypeTabs"></div>
   
 </div>
 
-<textarea id="PrototypeCodePanel"></textarea>
-
-<div id="PrototypeMenu">
-	<div onclick="window.open(Prototype.stage.activePage,'published')">Visit</div>
-  <div onclick="Prototype.blank()">New</div>
-  <div onclick="Prototype.duplicatePage()">Duplicate</div>
-  <div onclick="Prototype.renamePrompt()">Rename</div>
-  <div onclick="Prototype.deletePage()">Delete</div>
-  <div onclick="Prototype.importPrompt()">Import</div>
-  <div onclick="Launcher.open('Home')">Home</div>
+<div id="PrototypeImagesRibbon" class="PrototypeRibbon">
+  
+	<div id="PrototypeUploadButton"><span>Upload</span><iframe src="/nudgepad.images.upload" allowtransparency="true" frameborder="0px" width="100%" height="100%" scrolling="no" style="position: absolute; bottom: 0px; left: 0px;"></iframe></div>
+	
+  <div id="PrototypeImagesList"></div>
+  
 </div>
 
-<div id="PrototypeComponentsBar">
-	<div id="PrototypeComponentsBarUploadButton" class="PrototypeImageComponentOptions"><span>Upload</span><iframe src="/nudgepad.images.upload" allowtransparency="true" frameborder="0px" width="100%" height="100%" scrolling="no" style="position: absolute; bottom: 0px; left: 0px;"></iframe></div>
+<div id="PrototypeComponentsRibbon" class="PrototypeRibbon">
   <div id="PrototypeComponentsList"></div>
-  <div id="PrototypeImagecomponentsList" class="PrototypeImageComponentOptions"></div>
 </div>
+<space class="ComponentSet" path="mockup block">
+thumb
+ title Gray Block
+ content Block
+ style
+  background-color #7a8289
+block
+ style
+  background-color #7a8289
+  height 180px
+  width 220px
+  position absolute
+  font-family Helvetica
+  font-weight 200
+  font-size 15px
+  color #333
+  top 0
+  left 0
+</space>
 
-<div id="PrototypeDimensions"></div>
+<space class="ComponentSet" path="mockup h1">
+thumb
+ title Header
+ content Header
+ style
+  background-color white
+header
+ style
+  font-size 52px
+  color #222
+  position absolute
+  font-family Helvetica
+  font-weight 200
+  top 0
+  left 0
+  margin 0
+  padding 0
+ tag h1
+ content Header
+</space>
+
+<space class="ComponentSet" path="mockup sticky">
+thumb
+ title Sticky Note
+ content Sticky
+ style
+  background-color #f4ed04
+  box-shadow 0px 1px 3px rgba(0,0,0,.6)
+stickyNote
+ style
+  background-color #f4ed04
+  position absolute
+  color #222
+  top 0
+  left 0
+  height auto
+  font-family Courier
+  width 120px
+  font-size 14px
+  line-height 120%
+  padding 10px
+  box-shadow 0px 1px 3px rgba(0,0,0,.6)
+ content I am a sticky note. I do not show up on your live site.
+ draft true
+</space>
+
+<space id="PrototypeBlankPage" style="display: none;">
+head
+ tag head
+ scraps
+  title
+   tag title
+   content Untitled
+  style
+   tag style
+   content body {font-family: Helvetica; font-weight: 200;}
+body
+ tag body
+ scraps
+</space>
 <div class="Tool" id="Server">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">

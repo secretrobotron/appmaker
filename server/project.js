@@ -34,14 +34,8 @@ var ProjectRoute = function (app) {
   // Download all project for editing
   app.get('/nudgepad\.project', app.checkId, function (req, res, next) {
 
-    var activePage = req.query.activePage || "home"
-
-    if (!app.Project.get('timelines ' + activePage))
-      activePage = "home"
-
     var copy = new Space()
     copy.set('pages', app.Project.get('pages'))
-    copy.set('timelines ' + activePage, app.Project.get('timelines ' + activePage))
     copy.set('started', app.started)
     var hostname = os.hostname()
     if (app.development)

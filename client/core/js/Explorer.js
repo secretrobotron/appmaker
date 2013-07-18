@@ -18,7 +18,8 @@ Explorer.create = function (path, content, callback) {
 Explorer.downloadTimelines = function () {
   $.get('/nudgepad.project.timelines', {}, function (data) {
     var space = new Space(data)
-    Project.get('timelines').patch(space)
+    if (Project.get('timelines'))
+      Project.get('timelines').patch(space)
   })
 }
 
@@ -86,13 +87,14 @@ Explorer.rmdir = function (path, callback) {
   })
 }
 
-// Create utf8 files
+// Write utf8 files
 Explorer.set = function (path, content, callback) {
   var req = {}
   req.path = path
   req.content = content
   $.post('/nudgepad.explorer.save', req, function (err) {
-    callback()
+    if (callback)
+      callback()
   })
 }
 

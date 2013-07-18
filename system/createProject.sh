@@ -12,7 +12,10 @@ createProjectNix ()
     else
       # echo NO cloneFile provided. Creating blank project from blank.
       cp -R blank $projectsPath/$domain
+      mkdir $projectsPath/$domain/private/
       mkdir $projectsPath/$domain/private/team
+      # Create this here for mon so we dont have to create it later.
+      # theres probably a way to get mon to make it itself if it does not exist
       touch $projectsPath/$domain/private/app.log.txt
       
   fi
@@ -40,6 +43,7 @@ createProjectMac ()
     else
       # echo NO cloneFile provided. Creating blank project from blank.
       cp -R blank $projectsPath/$domain
+      mkdir $projectsPath/$domain/private/
       mkdir $projectsPath/$domain/private/team
   fi
   
