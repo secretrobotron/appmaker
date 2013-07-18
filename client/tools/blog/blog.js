@@ -96,7 +96,6 @@ Blog.publishPost = function (name) {
   var permalink = Blog.permalink(name)
   var template = post.get('template')
 
-  // We could easily cache this for speed if need be.
   var view = Project.get('pages ' + template)
   if (!view)
     view = Blog.blankTheme
