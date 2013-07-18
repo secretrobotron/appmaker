@@ -4,22 +4,12 @@ Blog.set('description', 'Add a blog to your project.')
 Blog.set('beta', 'true')
 Blog.activePost = null
 
-// Default theme
-Blog.blankTheme = new Space('title\n tag title\n content {{post.title Post Title}}\nstylesheet\n tag link\n rel stylesheet\n href project.css\ncontainer\n style\n  width 90%\n  max-width 800px\n  height 100%\n  margin 0 auto\n scraps\n  block1\n   style\n    height auto\n    font-family Open Sans\n    width auto\n    font-size 48px\n    font-weight normal\n    color #333\n    text-decoration none\n    font-style normal\n    padding 10px\n   content {{post.title Post Title}}\n  block14\n   style\n    height auto\n    font-family Open Sans\n    width auto\n    font-size 18px\n    font-weight normal\n    color #333\n    text-decoration none\n    font-style normal\n    padding 10px\n   content {{post.content Lorem ipsum foobar }}\n')
-
 Blog.createPost = function () {
   $('#BlogContent,#BlogTitle').val('')
   $('#BlogAdvanced').val('timestamp ' + new Date().getTime() + '\ntemplate blog')
   $('#BlogPermalink').attr('value', '')
   $('#BlogTitle').focus()
   Blog.activePost = null
-}
-
-// Ensures project has a blog theme before posting
-Blog.createTheme = function () {
-  if (Project.get('pages blog'))
-    return true
-  Project.create('pages blog', Blog.blankTheme.clone())
 }
 
 Blog.deletePost = function () {
@@ -32,7 +22,6 @@ Blog.deletePost = function () {
     return Flasher.error('Post does not exist')
 
   Project.delete('posts ' + name)
-  $.post('/nudgepad.blog.sort')
 }
 
 Blog.editPost = function (name) {
@@ -102,6 +91,27 @@ Blog.refresh = function () {
     Blog.createPost()
 }
 
+Blog.publishPost = function (name) {
+  var post = Project.get('posts ' + name)
+  var permalink = Blog.permalink(name)
+  var template = post.get('template')
+
+  // We could easily cache this for speed if need be.
+  var view = Project.get('pages ' + template)
+  if (!view)
+    view = Blog.blankTheme
+
+  view = new Page(view.toString())
+
+  var context = {}
+  context.project = Project
+  context.post = post.values
+  
+  Explorer.set(permalink + '.html', view.toHtml(context), function () {
+    window.open(name + '.html', 'published')
+  })
+}
+
 Blog.savePost = function () {
 
   var name = Blog.permalink($('#BlogPermalink').attr('value'))
@@ -132,8 +142,7 @@ Blog.savePost = function () {
   Blog.activePost = name
   
   // Open post in new tab
-  window.open(name, 'published')
-  $.post('/nudgepad.blog.sort')
+  Blog.publishPost(name)
 }
 
 Blog.updatePermalink = function () {
