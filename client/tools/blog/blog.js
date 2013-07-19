@@ -104,6 +104,9 @@ Blog.publishPost = function (name) {
   var html = view.toHtml()
   html = html.replace('Blog Post Title', post.get('title'))
   html = html.replace('Blog Post Content', post.get('content'))
+  
+  html = html_beautify(html)
+  
   Explorer.set(permalink + '.html', html, function () {
     window.open(name + '.html', 'published')
   })
