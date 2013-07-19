@@ -24,7 +24,7 @@ includes.html = ''
 
 
 /*** LIB FILES ***/
-var externalLibs = 'jquery-1.9.1.min.js jquery.dimensions.js jquery-ui-1.10.3.custom.min.js Lasso.js validateEmail.js ParseQueryString.js Permalink.js jquery.scrollbar.js ToProperCase.js ParseName.js jquery.topdiv.js Spectrum.js underscore.js marked.js NaturalSort.js store.js events.js parseCookie.js MoveCursorToEnd.js socket.io.js moment.min.js jquery.sha256.min.js space.js scraps.js platform.js jquery.htmltoscraps.js csstospace.js'.split(/ /)
+var externalLibs = 'jquery-1.9.1.min.js jquery.dimensions.js jquery-ui-1.10.3.custom.min.js Lasso.js validateEmail.js ParseQueryString.js Permalink.js jquery.scrollbar.js ToProperCase.js ParseName.js jquery.topdiv.js Spectrum.js underscore.js marked.js NaturalSort.js store.js events.js parseCookie.js MoveCursorToEnd.js socket.io.js moment.min.js jquery.sha256.min.js space.js scraps.js platform.js jquery.htmltoscraps.js csstospace.js beautify-html.js'.split(/ /)
 _.each(externalLibs, function (filename) {
   includes.js += '    <script type="text/javascript" src="/nudgepad/public/js/' + filename + '"></script>\n'
   code.js += fs.readFileSync(publicPath + 'js/' + filename, 'utf8') + ';'

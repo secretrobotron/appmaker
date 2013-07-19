@@ -314,16 +314,22 @@ Boston.stage.open = function (name) {
   
 }
 
+Boston.stage.prettyPrint = true
+
 Boston.stage.publish = function () {
-  var html = new Page(Boston.page.toString())
-  // todo: clean up published HTML
-  Explorer.set(Boston.stage.activePage + '.html', html.toHtml(function () {
+
+  var html = new Page(Boston.page.toString()).toHtml(function () {
     // File draft scrap
     if (this.get('draft') === 'true')
       return ''
     return this.div.toHtml()
     
-  }))
+  })
+  
+  if (Boston.stage.prettyPrint)
+    html = html_beautify(html)
+  
+  Explorer.set(Boston.stage.activePage + '.html', html)
 }
 
 Boston.stage.redo = function () {
