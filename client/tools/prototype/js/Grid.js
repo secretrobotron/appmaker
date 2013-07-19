@@ -2,8 +2,8 @@
  * A grid object looks like:
  * radius 15
  * type dynamic
- * vertical_spacing 100
- * horizontal_spacing 100
+ * verticalSpacing 100
+ * horizontalSpacing 100
  * snaplines true
  * on true
  * visible false
@@ -22,11 +22,11 @@
 function Grid (obj) {
   this.points = {}
   this.radius = 7
-  this.snap_to_objects = true
-  this.snap_to_grid = false
-  this.snap_to_container = true
-  this.vertical_spacing = 20
-  this.horizontal_spacing = 20
+  this.snapToObjects = true
+  this.snapToGrid = false
+  this.snapToContainer = true
+  this.verticalSpacing = 20
+  this.horizontalSpacing = 20
   this.snaplines = true
   this.on = true
   this.visible = false
@@ -64,15 +64,15 @@ Grid.prototype.addFixedPoints = function () {
   // verticals
   var start = $('#PrototypeStageBody').position().left
   var end = $('#PrototypeStageBody').position().left + $('#PrototypeStageBody').outerWidth()
-  this.horizontal_spacing = parseFloat(this.horizontal_spacing)
-  for (var i = start; i <= end; i = i + this.horizontal_spacing) {
+  this.horizontalSpacing = parseFloat(this.horizontalSpacing)
+  for (var i = start; i <= end; i = i + this.horizontalSpacing) {
     this.addPoint(i, 0, '#PrototypeStageBody')  
   }
   
   start = $('#PrototypeStageBody').position().top
   end = $('#PrototypeStageBody').position().top + $('#PrototypeStageBody').outerHeight()
-  this.vertical_spacing = parseFloat(this.vertical_spacing)
-  for (var i = start; i <= end; i = i + this.vertical_spacing) {
+  this.verticalSpacing = parseFloat(this.verticalSpacing)
+  for (var i = start; i <= end; i = i + this.verticalSpacing) {
     this.addPoint(0, i, '#PrototypeStageBody')  
   }
 
@@ -121,13 +121,13 @@ Grid.prototype.create = function () {
     return this.erase()
   }
   
-  if (this.snap_to_objects)
+  if (this.snapToObjects)
     this.addDynamicPoints()
   
-  if (this.snap_to_grid)
+  if (this.snapToGrid)
     this.addFixedPoints()
   
-  if (this.snap_to_container) {
+  if (this.snapToContainer) {
     // We create these in specific order so that the bigger scraps override the little ones.
     // left
 //    this.addPoint(0, $('#PrototypeStageBody').position().top, '#PrototypeStageBody')
@@ -219,25 +219,25 @@ Grid.prototype.drawSnapline = function (point1, point2) {
   if (!this.snaplines) return false
   
   this.drawSnaplineCanvas()
-  this.snapline_context.beginPath()
-  this.snapline_context.lineWidth = 1
-  this.snapline_context.moveTo(point1.x + .5, point1.y + .5)
-  this.snapline_context.lineTo(point2.x + .5, point2.y + .5)
-  this.snapline_context.stroke()
+  this.snaplineContext.beginPath()
+  this.snaplineContext.lineWidth = 1
+  this.snaplineContext.moveTo(point1.x + .5, point1.y + .5)
+  this.snaplineContext.lineTo(point2.x + .5, point2.y + .5)
+  this.snaplineContext.stroke()
   
   //draw a circle
   
-  this.snapline_context.moveTo(point1.x, point1.y)
-  this.snapline_context.beginPath()
-  this.snapline_context.arc(point1.x, point1.y, 2, 0, Math.PI*2, true)
-  this.snapline_context.closePath()
-  this.snapline_context.fill()
+  this.snaplineContext.moveTo(point1.x, point1.y)
+  this.snaplineContext.beginPath()
+  this.snaplineContext.arc(point1.x, point1.y, 2, 0, Math.PI*2, true)
+  this.snaplineContext.closePath()
+  this.snaplineContext.fill()
   
-  this.snapline_context.moveTo(point2.x, point2.y)
-  this.snapline_context.beginPath()
-  this.snapline_context.arc(point2.x, point2.y, 2, 0, Math.PI*2, true)
-  this.snapline_context.closePath()
-  this.snapline_context.fill()
+  this.snaplineContext.moveTo(point2.x, point2.y)
+  this.snaplineContext.beginPath()
+  this.snaplineContext.arc(point2.x, point2.y, 2, 0, Math.PI*2, true)
+  this.snaplineContext.closePath()
+  this.snaplineContext.fill()
   
 //  console.log(point2.selector)
   
@@ -250,21 +250,21 @@ Grid.prototype.drawSnapline = function (point1, point2) {
  */
 Grid.prototype.drawSnaplineCanvas = function () {
   
-  if (this.snapline_context)
+  if (this.snaplineContext)
     return true
   
   this.width = $("#PrototypeStageBody").width()
   this.height = $("#PrototypeStageBody").height()
   
-  var canvas = '<canvas style="position: absolute; top: 0; left: 0; z-index: 100;" id="snapline_canvas" width="' + this.width + '" height="' + this.height + '"></canvas>'
+  var canvas = '<canvas style="position: absolute; top: 0; left: 0; z-index: 100;" id="snaplineCanvas" width="' + this.width + '" height="' + this.height + '"></canvas>'
   $('#PrototypeStageBody').append(canvas)
   
-  this.snapline_context = document.getElementById('snapline_canvas').getContext('2d')
-  this.snapline_context.lineWidth = 1
-  this.snapline_context.strokeStyle = 'blue'
+  this.snaplineContext = document.getElementById('snaplineCanvas').getContext('2d')
+  this.snaplineContext.lineWidth = 1
+  this.snaplineContext.strokeStyle = 'blue'
   
   // Sometimes it gets stuck(ie when someone is snapping then right clicks). This lets you click it to remove it.
-  $('#snapline_canvas').on('mousedown', function () {
+  $('#snaplineCanvas').on('mousedown', function () {
     $(this).remove()
   })
 }
@@ -273,8 +273,8 @@ Grid.prototype.drawSnaplineCanvas = function () {
  */
 Grid.prototype.erase = function () {
   delete this.context
-  delete this.snapline_context
-  $('#grid_canvas,#snapline_canvas').remove()
+  delete this.snaplineContext
+  $('#grid_canvas,#snaplineCanvas').remove()
   $('.GridSnapOrigin').removeClass('GridSnapOrigin')
 }
 
@@ -286,14 +286,14 @@ Grid.prototype.eraseSnaplines = function () {
   
   $('.GridSnapOrigin').removeClass('GridSnapOrigin')
   
-  if (!this.snapline_context)
+  if (!this.snaplineContext)
     return false
   // I have lots of transforms right now
-//  this.snapline_context.save()
-///  this.snapline_context.setTransform(1, 0, 0, 1, 0, 0)
+//  this.snaplineContext.save()
+///  this.snaplineContext.setTransform(1, 0, 0, 1, 0, 0)
   // Will always clear the right space
-  this.snapline_context.clearRect(0, 0, this.width, this.height)
-//  this.snapline_context.restore()
+  this.snaplineContext.clearRect(0, 0, this.width, this.height)
+//  this.snaplineContext.restore()
   // Still have my old transforms
 }
 
@@ -301,65 +301,65 @@ Grid.prototype.eraseSnaplines = function () {
  * todo: make sure grid is sorted so this is blazing fast!
  * @return {object} change.x, change.y
  */
-Grid.prototype.getDelta = function (scrap_points) {
+Grid.prototype.getDelta = function (scrapPoints) {
   this.eraseSnaplines()
   
   var change = {}
-  var x_pair = []
-  var y_pair = []
+  var xPair = []
+  var yPair = []
   // Check all 3 points. We are looking for the closest link.
-  for (var i in scrap_points) {
-    var scrap_point = scrap_points[i]
+  for (var i in scrapPoints) {
+    var scrapPoint = scrapPoints[i]
     // compute the smallest 3 x difference to each point
     for (var j in this.points) {
       if (!this.points.hasOwnProperty(j))
         continue
-      var grid_point = this.points[j]
+      var gridPoint = this.points[j]
       
-      var x_difference = grid_point.x - scrap_point.x
-      var y_difference = grid_point.y - scrap_point.y
+      var xDifference = gridPoint.x - scrapPoint.x
+      var yDifference = gridPoint.y - scrapPoint.y
       
       // Initialize values
       if (!change.x) {
-        change.x = x_difference
-        change.y = y_difference
+        change.x = xDifference
+        change.y = yDifference
       }
       
       // If this point difference is closer, use it.
-      if (Math.abs(x_difference) <= Math.abs(change.x)) {
-        change.x = x_difference
-        x_pair = [scrap_point, grid_point]
+      if (Math.abs(xDifference) <= Math.abs(change.x)) {
+        change.x = xDifference
+        xPair = [scrapPoint, gridPoint]
       }
-      if (Math.abs(y_difference) <= Math.abs(change.y)) {
-        change.y = y_difference
-        y_pair = [scrap_point, grid_point]
+      if (Math.abs(yDifference) <= Math.abs(change.y)) {
+        change.y = yDifference
+        yPair = [scrapPoint, gridPoint]
       }
     }
 
   }
   
   
-  var x_snapped = Math.abs(change.x) < this.radius
-  var y_snapped = Math.abs(change.y) < this.radius
+  var xSnapped = Math.abs(change.x) < this.radius
+  var ySnapped = Math.abs(change.y) < this.radius
   
-  if (!x_snapped) change.x = 0
-  if (!y_snapped) change.y = 0
+  if (!xSnapped) change.x = 0
+  if (!ySnapped) change.y = 0
   
   // The scrap points may have shifted in 2 directions, so make sure
   // we are drawing the *new* scrap points when we draw the snapline.
-  if (x_snapped) {
-    x_pair[0] = {
-      x : x_pair[0].x + change.x,
-      y : x_pair[0].y + change.y
+  if (xSnapped) {
+    xPair[0] = {
+      x : xPair[0].x + change.x,
+      y : xPair[0].y + change.y
     }
-    this.drawSnapline(x_pair[0], x_pair[1])
+    this.drawSnapline(xPair[0], xPair[1])
   }
-  if (y_snapped) {
-    y_pair[0] = {
-      x : y_pair[0].x + change.x,
-      y : y_pair[0].y + change.y
+  if (ySnapped) {
+    yPair[0] = {
+      x : yPair[0].x + change.x,
+      y : yPair[0].y + change.y
     }
-    this.drawSnapline(y_pair[0], y_pair[1])
+    this.drawSnapline(yPair[0], yPair[1])
   }
   
   return change
@@ -371,8 +371,8 @@ Grid.prototype.getDelta = function (scrap_points) {
 /**
  */
 Grid.prototype.removeSnaplines = function () {
-  delete this.snapline_context
-  $('#snapline_canvas').remove()
+  delete this.snaplineContext
+  $('#snaplineCanvas').remove()
   $('.GridSnapOrigin').removeClass('GridSnapOrigin')
 }
 

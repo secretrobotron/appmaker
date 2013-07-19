@@ -28,6 +28,10 @@ $.fn.duplicate = function () {
   element.selectMe(true)
 }
 
+$.fn.owner = function () {
+  return Prototype.page.get($(this).attr('value')).element()
+}
+
 $.fn.parentPath = function () {
   var path = $(this).attr('path')
   if (!path.match(/ /))
