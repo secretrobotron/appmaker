@@ -39,14 +39,7 @@ Boston.contentEditor.focus = function (selector, selectAll) {
   if (!scrap.isContentEditable()) {
     
     var attr = 'content'
-    var tag = scrap.values.tag
-    
-    if (tag && tag.match(/^(list)$/)) {
-      Boston.stage.selection.clear()
-      element.selectMe()
-      Boston.stage.selection.editSource()
-      return false
-    }
+    var tag = scrap.get('tag')
     
     if (tag && tag.match(/^(textarea|input|password)$/))
       attr = 'placeholder'
