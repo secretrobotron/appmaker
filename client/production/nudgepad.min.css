@@ -228,7 +228,7 @@ html {
    padding: 40px;
 }
 
-#RegisterFormPrototypeLive {
+#RegisterFormMessage {
   font-size : 24px;
   line-height : 140%;
   color : #222;
@@ -698,159 +698,7 @@ body {
   background-color: #427a14;
 }
 
-#FilesExplorerHolder {
-  cursor: pointer;
-}
-
-#FilesExplorerPath {
-  font-size : 15px;
-  color : #333;
-  text-align : left;
-  cursor: pointer;
-}
-
-#FilesExplorerPath span:hover {
-  color: #1a86d6;
-}
-
-.FilesExplorerHeader {
-  font-size : 24px;
-}
-
-.FilesExplorerEdit, .FilesExplorerPreview {
-  color: #555;
-  height: 40px;
-  line-height: 40px;
-  background-image: url(/nudgepad/public/images/document.png);
-  text-indent: 25px;
-  background-position: left center;
-  background-repeat: no-repeat;
-}
-
-.FilesExplorerFolderName {
-  height: 40px;
-  line-height: 40px;
-  color: #1a86d6;
-  background-image: url(/nudgepad/public/images/folder2.png);
-  text-indent: 25px;
-  background-position: left center;
-  background-repeat: no-repeat;
-}
-
-#FilesExplorer {
-  border-collapse: collapse;
-}
-
-#FilesExplorer tr td {
-  width: 300px;
-}
-   
-.FilesExplorerFolderName {
-  width: 300px;
-}
-
-.FilesHiddenAction, .FilesHiddenAction a {
-  color: #eee;
-  text-decoration: none;
-}
-
-#FilesExplorer tr td.FilesExplorerEdit:hover,
-#FilesExplorer tr td.FilesExplorerFolderName:hover,
-#FilesExplorer tr td.FilesHiddenAction:hover,
-#FilesExplorer tr td.FilesHiddenAction:hover a {
-  text-decoration: underline;
-  cursor: pointer;
-  color: #1a86d6;
-}
-
-#FilesExplorer tr:hover td.FilesHiddenAction,
-#FilesExplorer tr:hover td.FilesHiddenAction a{
-  color: #1a86d6;
-}
-
-#FilesExplorer tr th {
-  color: #888888;
-}
-
-#FilesExplorer tr.FilesExplorerHeader {
-  border-bottom: 3px solid #555;
-}
-
-#FilesExplorer tr.FilesExplorerFolder {
-  border-bottom: 1px solid #ccc;
-}
-
-#FilesExplorer tr.FilesExplorerFile {
-  border-bottom: 1px solid #ccc;
-  white-space: nowrap;
-}
-
-#FilesNew {
-  color: #555;
-  text-align: right;
-}
-
-#FilesNew a {
-  cursor: pointer;
-}
-
-#FilesNew a:hover {
-  text-decoration: underline;
-}
-
-#FilesHeader {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  
-  display: -webkit-flex;  /* NEW, Chrome 21+ */
-  display: flex;          /* NEW: Opera 12.1, Firefox 22+ */
-  -webkit-box-align: center; -moz-box-align: center; /* OLD… */
-  -ms-flex-align: center; /* You know the drill now… */
-  -webkit-align-items: center;
-  align-items: center;
-  
-  -webkit-box-pack: center; -moz-box-pack: center; 
-  -ms-flex-pack: center; 
-  -webkit-justify-content: center;
-  justify-content: center;
-}
-
-#FilesHeader > div {
-  width: 50%;
-}
-#GitHubStatus {
-  white-space: pre;
-  -webkit-user-select: auto;
-  -moz-user-select: text;
-  user-select: auto;
-}.HomeSquare {
-  cursor : pointer;
-  font-weight : 300;
-  margin-top: 20px;
-  color: #fff;
-  width: 31%;
-  min-width: 300px;
-  float: left;
-  margin-right: 20px;
-}
-
-.HomeSquare.beta {
-  display: none;
-}
-
-.HomeTopBlock {
-  padding: 80px 20px;
-  font-size: 3.375em;
-}
-
-.HomeSubBlock {
-  font-size: 0.875em;
-  background: rgba(0,0,0,.2);
-  padding: 20px;
-  font-weight: 400;
-}
-
-#PrototypeDimensions {
+#BostonDimensions {
   display: none;
   position: absolute;
   top: 0;
@@ -866,7 +714,7 @@ body {
   z-index: 200;
 }
 
-#PrototypeCodePanel {
+#BostonCodePanel {
   position: fixed;
   z-index: 5000;
   left: 0;
@@ -893,13 +741,13 @@ body {
   outline: 1px solid #5555ff;
 }
 
-.PrototypeEditHandle {
+.BostonEditHandle {
   height: 16px;
   position: absolute;
   z-index: 200;
 }
 
-.PrototypeEditStyleHandle, .PrototypeLinkHandle {
+.BostonEditStyleHandle, .BostonLinkHandle {
   background-image : url(/nudgepad/public/images/pencil_lt.png);
   background-size: 14px;
   background-position : center;
@@ -917,7 +765,7 @@ body {
 }
 
 
-#PrototypeStage {
+#BostonStage {
   position: relative;
   height: 637px;
   overflow-y: scroll;
@@ -928,14 +776,14 @@ body {
   width: 100%;
 }
 
-#PrototypeStageHead {
+#BostonStageHead {
   height: 0;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-#PrototypeStageBody {
+#BostonStageBody {
   height: 1000px;
   position: relative;
   background-color: white;
@@ -945,14 +793,14 @@ body {
 }
 
 /**
- * We add this as kind of a hack, because adding bottom padding to PrototypeStage has no effect.
+ * We add this as kind of a hack, because adding bottom padding to BostonStage has no effect.
  */
-#PrototypeStageBottomPadding {
+#BostonStageBottomPadding {
   height: 200px;
   background-color: rgb(233, 233, 233);
 }
 
-#PrototypeContextMenu {
+#BostonContextMenu {
   position: fixed;
   top: 0;
   left: 0;
@@ -965,24 +813,24 @@ body {
   box-shadow: 0px 1px 3px rgba(0,0,0,.6);
 }
 
-#PrototypeContextMenu a {
+#BostonContextMenu a {
   padding: 6px;
   border-bottom: 1px solid #333;
   display: block;
 }
 
-.PrototypeContextMenuSeparator {
+.BostonContextMenuSeparator {
   height: 10px;
   border-bottom: 1px solid #aaa;
 }
 
-#PrototypeContextMenu a:hover {
+#BostonContextMenu a:hover {
   background-color: #2a2a2a;
 }
 
 /*----------------Tool Bar-------------------*/
 
-#PrototypeBar {
+#BostonBar {
   position: fixed;
   bottom: 0px;
   height: 50px;
@@ -994,27 +842,27 @@ body {
   text-align: left;
 }
 
-.PrototypeBarComponent {
+.BostonBarTab {
   float: left;
   margin-left: 10px;
   margin-top: 10px;
   cursor: pointer;
 }
 
-.PrototypeBarButton img {
+.BostonBarButton img {
   padding-top: 12px;
   opacity: .4;
 }
 
-.PrototypeBarButton:hover img{
+.BostonBarButton:hover img{
   opacity: .7;
 }
 
-.PrototypeBarButton:active img{
+.BostonBarButton:active img{
   opacity: 1;
 }
 
-#PrototypeTabs {
+#BostonTabs {
   float: right;
   max-width: 600px;
   overflow: hidden;
@@ -1024,7 +872,7 @@ body {
   color: #777;
 }
 
-#PrototypeMenu {
+#BostonMenu {
   background-color: #333;
   border-radius: 3px 0px 0px 0px;
   width: 200px;
@@ -1039,79 +887,83 @@ body {
   bottom: 50;
 }
 
-#PrototypeMenu div{
+#BostonMenu div{
   padding: 6px 30px;
   cursor: pointer;
 }
 
-#PrototypeMenu div:hover {
+#BostonMenu div:hover {
   background-color: #2a2a2a;
 }
 
-#PrototypeMenu div:active {
+#BostonMenu div:active {
   background-color: #1a1a1a;
 }
 
-#PrototypeTabs span {
+#BostonTabs span {
   margin-right: 20px;
 }
 
-#PrototypeTabs span {
+#BostonTabs span {
   cursor: pointer;
 }
 
-#PrototypeTabs span.PrototypeOpenPage {
+#BostonTabs span.BostonOpenPage {
   text-decoration: underline;
 }
 
-.PrototypeTimeline {
+.BostonTimeline {
   line-height: 50px;
   font-size: 14px;
 /*  display: none; */
 }
 
-#PrototypeViewSwitcher {
+#BostonDeviceSwitcher {
   display: inline-block;
   line-height: 50px;
   font-size: 14px;
   margin-left: 20px;
   cursor: pointer;
   color: #777;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  user-select: none;
 }
 
-#PrototypeViewSwitcher:hover {
+#BostonDeviceSwitcher:hover {
   color: rgba(230, 230, 230, 1);
 }
 
-#PrototypeTimelineHolder {
+#BostonTimelineHolder {
   margin-left: 20px;
   opacity: 0.2;
   -webkit-transition: .25s;
   display: inline-block;
 }
 
-#PrototypeTimelineHolder #PrototypeTimeline {
+#BostonTimelineHolder #BostonTimeline {
   opacity: 0;
 }
 
-#PrototypeTimelineHolder:hover, #PrototypeTimelineHolder:hover #PrototypeTimeline {
+#BostonTimelineHolder:hover, #BostonTimelineHolder:hover #BostonTimeline {
   opacity: 1;
+  /* Broken on Firefox */
 }
 
-#PrototypeTimeline {
+#BostonTimeline {
   vertical-align: middle;
 }
 
-#PrototypeTimelinePosition {
+#BostonTimelinePosition {
   cursor: default;
 }
 
 
-#PrototypeTimelinePosition, #PrototypeTimelineClear {
+#BostonTimelinePosition, #BostonTimelineClear {
   color: rgba(230, 230, 230, 1);
 }
 
-#PrototypeBarMenuButton {
+#BostonBarMenuButton {
   height: 50px;
   width: 50px;
   background-color: #1a86d6;
@@ -1122,19 +974,19 @@ body {
   cursor: pointer;
 }
 
-#PrototypeBarMenuButton:hover {
+#BostonBarMenuButton:hover {
   background-color: #3575b5;
 }
 
-#PrototypeBarMenuButton:active {
+#BostonBarMenuButton:active {
   background-color: #2c659e;
 }
 
-.PrototypeLowlight {
+.BostonLowlight {
    opacity: .2;
 }
 
-#PrototypeComponentsBar {
+.BostonRibbon {
   position: fixed;
   left: 0px;
   width: 100%;
@@ -1146,21 +998,17 @@ body {
   text-align: left;
 }
 
-#PrototypeComponentsList {
+#BostonComponentsList {
   float: left;
 }
 
-.PrototypeComponentImg {
+.BostonComponentImg {
   float: left;
   margin-left: 10px;
   margin-top: 10px;
 }
 
-.PrototypeImageComponentOptions {
-  display: none;
-}
-
-#PrototypeComponentsBarUploadButton {
+#BostonUploadButton {
   float: left;
   width: 70px;
   background-color: #555;
@@ -1177,19 +1025,15 @@ body {
   position: relative;
 }
 
-#PrototypeComponentsBarUploadButton:hover {
+#BostonUploadButton:hover {
   background-color: #444;
 }
 
-#PrototypeComponentsBarUploadButton:active {
+#BostonUploadButton:active {
   background-color: #3a3a3a;
 }
 
-#PrototypeImagecomponentsList {
-  float: left;
-}
-
-.PrototypeImageThumbDrop {
+#BostonImagesList .Image {
   float: left;
   height: 60px;
   width: 60px;
@@ -1202,7 +1046,7 @@ body {
   padding: 0;
 }
 
-.PrototypeImageThumbDrop img {
+#BostonImagesList .Image img {
   padding: 0;
   max-height: 50px;
   max-width: 50px;
@@ -1210,7 +1054,25 @@ body {
   line-height: 60px;
 }
 
-/** Todo: put these under #PrototypeStage namespace? **/
+.Component {
+  float: left;
+  height: 60px;
+  width: 60px;
+  margin-left: 10px;
+  text-align: center;
+  background-color: #2a2a2a;
+  margin-top: 10px;
+  display: inline-block;
+  line-height: 60px;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  user-select: none;
+}
+
+
+/** Todo: put these under #BostonStage namespace? **/
 .scrap {
   z-index: 1;
   word-wrap: break-word;
@@ -1233,14 +1095,16 @@ body {
   outline: 1px solid #5555ff;
 }
 
-.selection.PrototypeHighlightedScrap {
+.selection.BostonHighlightedScrap {
   outline: 2px solid blue;
   box-shadow: 1px 1px 8px 8px blue;
   z-index: 100;
 }
 
 
-
+.ComponentSet {
+  display: none;
+}
 
 
 /***
@@ -1711,7 +1575,7 @@ License: MIT
 .sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner
 {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);
-}#PrototypeStyleEditor {
+}#BostonStyleEditor {
   position: absolute;
   width: auto;
   height: auto;
@@ -1759,12 +1623,12 @@ License: MIT
   left: 7px;
 }
 
-#PrototypeStyleEditor #blockContainer {
+#BostonStyleEditor #blockContainer {
   padding: 10px;
   width: 290px;
 }
 
-#PrototypeStyleEditor .editorButton {
+#BostonStyleEditor .editorButton {
   float: left;
   height: 40px;
   width: 40px;
@@ -1775,20 +1639,20 @@ License: MIT
   text-align: center;
 }
 
-#PrototypeStyleEditor .editorButton img{
+#BostonStyleEditor .editorButton img{
   padding-top: 12px;
   opacity: .6;
 }
 
-#PrototypeStyleEditor .editorButton:hover{
+#BostonStyleEditor .editorButton:hover{
   background-color: #555;
 }
 
-#PrototypeStyleEditor .editorButton:active{
+#BostonStyleEditor .editorButton:active{
   background-color: #323232;
 }
 
-#PrototypeStyleEditor .editorOption{
+#BostonStyleEditor .editorOption{
   cursor: pointer;
   margin: 0px 10px;
   display : inline-block;
@@ -1798,15 +1662,15 @@ License: MIT
   float: left;
 }
 
-#PrototypeStyleEditor .selectedEditorOption{
+#BostonStyleEditor .selectedEditorOption{
   color: #FFF;
 }
 
-#PrototypeStyleEditor textarea {
+#BostonStyleEditor textarea {
   resize: none;
 }
 
-#PrototypeStyleEditorModal {
+#BostonStyleEditorModal {
   width : 100%;
   height : 100%;
   top : 0;
@@ -1816,7 +1680,7 @@ License: MIT
   background: transparent;
 }
 
-#PrototypeStyleEditorCssEditor {
+#BostonStyleEditorCssEditor {
   position: relative;
   padding : 6px 3px;
   font-family : monospace;
@@ -1832,7 +1696,7 @@ License: MIT
   color: #CCC;
 }
 
-#PrototypeStyleEditorTextEditor{
+#BostonStyleEditorTextEditor{
   display: none;
   padding: 10px;
 }
@@ -1846,29 +1710,29 @@ License: MIT
   background-color : #333;
 }
 
-#PrototypeStyleEditor .editorHeader{
+#BostonStyleEditor .editorHeader{
   color: #888;
   font-size: 13px;
   margin-bottom: 5px;
   padding-top: 15px;
 }
 
-#PrototypeStyleEditor .columnLeft{
+#BostonStyleEditor .columnLeft{
   width: 140px;
   float: left;
   margin-right: 10px;
 }
 
-#PrototypeStyleEditor .clear{
+#BostonStyleEditor .clear{
   clear: both;
 }
 
-#PrototypeStyleEditor .columnRight{
+#BostonStyleEditor .columnRight{
   float: left;
   width: 140px;
 }
 
-#PrototypeStyleEditor .toolButton {
+#BostonStyleEditor .toolButton {
   height: 34px;
   font-size: 13px;
   line-height: 34px;
@@ -1883,43 +1747,43 @@ License: MIT
   margin-right: 1px;
 }
 
-#PrototypeStyleEditor .toolButton img {
+#BostonStyleEditor .toolButton img {
   opacity: .6;
   padding-top: 9px;
 }
 
-#PrototypeStyleEditor .toolButton:hover {
+#BostonStyleEditor .toolButton:hover {
   background-color: #555;
 }
 
-#PrototypeStyleEditor .toolButton:active {
+#BostonStyleEditor .toolButton:active {
   background-color: #323232;
 }
 
-#PrototypeStyleEditor .toolButtonOne{
+#BostonStyleEditor .toolButtonOne{
   border-radius: 3px 0px 0px 3px;
 }
 
-#PrototypeStyleEditor .toolButtonTwo{
+#BostonStyleEditor .toolButtonTwo{
 }
 
-#PrototypeStyleEditor .toolButtonThree{
+#BostonStyleEditor .toolButtonThree{
   border-radius: 0px 3px 3px 0px;
 }
 
-#PrototypeStyleEditor #alignmentOne{
+#BostonStyleEditor #alignmentOne{
   background-image : url(/nudgepad/public/images/left_lt.png);
 }
 
-#PrototypeStyleEditor #alignmentTwo{
+#BostonStyleEditor #alignmentTwo{
   background-image : url(/nudgepad/public/images/center_lt.png);
 }
 
-#PrototypeStyleEditor #alignmentThree{
+#BostonStyleEditor #alignmentThree{
   background-image : url(/nudgepad/public/images/right_lt.png);
 }
 
-#PrototypeStyleEditor #fontFamily {
+#BostonStyleEditor #fontFamily {
   width: 140px;
   overflow: hidden;
   text-align: left;
@@ -1957,42 +1821,42 @@ License: MIT
   border-radius: 3px;
 }
 
-#PrototypeStyleEditor #fontFamilyOne{
+#BostonStyleEditor #fontFamilyOne{
   font-family: 'Arial';
 }
 
-#PrototypeStyleEditor #fontFamilyTwo{
+#BostonStyleEditor #fontFamilyTwo{
   font-family: 'Georgia';
 }
 
-#PrototypeStyleEditor #fontFamilyThree{
+#BostonStyleEditor #fontFamilyThree{
   font-family: 'Times';
 }
 
-#PrototypeStyleEditor #fontColorOne{
+#BostonStyleEditor #fontColorOne{
   color: #333;
 }
 
-#PrototypeStyleEditor #fontColorTwo{
+#BostonStyleEditor #fontColorTwo{
   color: #888;
 }
 
-#PrototypeStyleEditor #fontColorThree{
+#BostonStyleEditor #fontColorThree{
   color: #fff;
   background-color: #555;
 }
 
-#PrototypeStyleEditor #textStyleTwo{
+#BostonStyleEditor #textStyleTwo{
   text-decoration: underline;
 }
 
-#PrototypeStyleEditor .transparentButton{
+#BostonStyleEditor .transparentButton{
   background-image : url(/nudgepad/public/images/invisible.png);
   background-position: center;
   background-repeat: no-repeat;
 }
 
-#PrototypeStyleEditorTopBar {
+#BostonStyleEditorTopBar {
   height : 40px;
   background-color: #2a2a2a;
   position : relative;
@@ -2000,14 +1864,14 @@ License: MIT
 }
 
 
-#PrototypeStyleEditorBottomBar {
+#BostonStyleEditorBottomBar {
   height : 40px;
   position : relative;
   background : #777;
   
 }
 
-#PrototypeStyleEditorSaveButton {
+#BostonStyleEditorSaveButton {
   width : 60px;
   height : 40px;
   float: right;
@@ -2022,25 +1886,177 @@ License: MIT
   cursor: pointer;
 }
 
-#PrototypeStyleEditorSaveButton {
+#BostonStyleEditorSaveButton {
   background-color: #11a4ed;
 }
 
-#PrototypeStyleEditorSaveButton:hover{
+#BostonStyleEditorSaveButton:hover{
   background-color: #0c8ecf;
 }
 
-#PrototypeStyleEditorSaveButton:active{
+#BostonStyleEditorSaveButton:active{
     background-color: #055780;
 }
 
-#PrototypeStyleEditorMoveUp:hover, #PrototypeStyleEditorMoveDown:hover, #PrototypeStyleEditorLock:hover, #PrototypeStyleEditorLink:hover{
+#BostonStyleEditorMoveUp:hover, #BostonStyleEditorMoveDown:hover, #BostonStyleEditorLock:hover, #BostonStyleEditorLink:hover{
   opacity: .7;
 }
 
-#PrototypeStyleEditorMoveUp:active, #PrototypeStyleEditorMoveDown:active, #PrototypeStyleEditorLock:active, #PrototypeStyleEditorLink:active{
+#BostonStyleEditorMoveUp:active, #BostonStyleEditorMoveDown:active, #BostonStyleEditorLock:active, #BostonStyleEditorLink:active{
   opacity: 1;
 }
+#FilesExplorerHolder {
+  cursor: pointer;
+}
+
+#FilesExplorerPath {
+  font-size : 15px;
+  color : #333;
+  text-align : left;
+  cursor: pointer;
+}
+
+#FilesExplorerPath span:hover {
+  color: #1a86d6;
+}
+
+.FilesExplorerHeader {
+  font-size : 24px;
+}
+
+.FilesExplorerEdit, .FilesExplorerPreview {
+  color: #555;
+  height: 40px;
+  line-height: 40px;
+  background-image: url(/nudgepad/public/images/document.png);
+  text-indent: 25px;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+.FilesExplorerFolderName {
+  height: 40px;
+  line-height: 40px;
+  color: #1a86d6;
+  background-image: url(/nudgepad/public/images/folder2.png);
+  text-indent: 25px;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+#FilesExplorer {
+  border-collapse: collapse;
+}
+
+#FilesExplorer tr td {
+  width: 300px;
+}
+   
+.FilesExplorerFolderName {
+  width: 300px;
+}
+
+.FilesHiddenAction, .FilesHiddenAction a {
+  color: #eee;
+  text-decoration: none;
+}
+
+#FilesExplorer tr td.FilesExplorerEdit:hover,
+#FilesExplorer tr td.FilesExplorerFolderName:hover,
+#FilesExplorer tr td.FilesHiddenAction:hover,
+#FilesExplorer tr td.FilesHiddenAction:hover a {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #1a86d6;
+}
+
+#FilesExplorer tr:hover td.FilesHiddenAction,
+#FilesExplorer tr:hover td.FilesHiddenAction a{
+  color: #1a86d6;
+}
+
+#FilesExplorer tr th {
+  color: #888888;
+}
+
+#FilesExplorer tr.FilesExplorerHeader {
+  border-bottom: 3px solid #555;
+}
+
+#FilesExplorer tr.FilesExplorerFolder {
+  border-bottom: 1px solid #ccc;
+}
+
+#FilesExplorer tr.FilesExplorerFile {
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+#FilesNew {
+  color: #555;
+  text-align: right;
+}
+
+#FilesNew a {
+  cursor: pointer;
+}
+
+#FilesNew a:hover {
+  text-decoration: underline;
+}
+
+#FilesHeader {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  
+  display: -webkit-flex;  /* NEW, Chrome 21+ */
+  display: flex;          /* NEW: Opera 12.1, Firefox 22+ */
+  -webkit-box-align: center; -moz-box-align: center; /* OLD… */
+  -ms-flex-align: center; /* You know the drill now… */
+  -webkit-align-items: center;
+  align-items: center;
+  
+  -webkit-box-pack: center; -moz-box-pack: center; 
+  -ms-flex-pack: center; 
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+#FilesHeader > div {
+  width: 50%;
+}
+#GitHubStatus {
+  white-space: pre;
+  -webkit-user-select: auto;
+  -moz-user-select: text;
+  user-select: auto;
+}.HomeSquare {
+  cursor : pointer;
+  font-weight : 300;
+  margin-top: 20px;
+  color: #fff;
+  width: 31%;
+  min-width: 300px;
+  float: left;
+  margin-right: 20px;
+}
+
+.HomeSquare.beta {
+  display: none;
+}
+
+.HomeTopBlock {
+  padding: 80px 20px;
+  font-size: 3.375em;
+}
+
+.HomeSubBlock {
+  font-size: 0.875em;
+  background: rgba(0,0,0,.2);
+  padding: 20px;
+  font-weight: 400;
+}
+
 
 #ServerLogHolder {
   border: none;

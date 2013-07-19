@@ -29,9 +29,9 @@ WebMaker.fetch = function () {
               console.log(url)
 //              https://s3.amazonaws.com/makes.org/webmaker/thimble/postcard-for-a-friend_
 // https://webmaker.makes.org/
-              Launcher.open('Prototype')
-              Prototype.create()
-              Prototype.import(url)
+              Launcher.open('Boston')
+              Boston.create()
+              Boston.import(url)
             })
             $('#Makes').append(template)
             

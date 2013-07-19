@@ -1,0 +1,23 @@
+<div id="BostonBar" style="display: none;">
+
+  <div title="menu" id="BostonBarMenuButton"></div>
+
+  <div title="Drop components onto your page" id="BostonComponentsTab" class="BostonBarTab"><img src="/nudgepad/tools/boston/images/categories/sticky.png"></div>
+
+  <div title="Drop images onto your page" id="BostonImageTab" class="BostonBarTab"><img src="/nudgepad/tools/boston/images/categories/image.png"></div>
+  
+  <div id="BostonDeviceSwitcher" onclick="Boston.stage.toggleDevice()">Device</div>
+  
+  <div id="BostonTimelineHolder">
+    <span class="BostonTimeline" id="BostonTimelinePosition" ondblclick="Boston.clearTimelinePrompt()"></span>
+    <input class="BostonTimeline" id="BostonTimeline" type="range" min="0" max="100" step="1" onclick="Boston.stage.goto($(this).val())" value="100">
+    <script type="text/javascript">
+      $('#BostonTimeline').on('slide', function () {
+        Boston.stage.goto($(this).val())
+    })</script>
+    
+  </div>
+  
+  <div id="BostonTabs"></div>
+  
+</div>

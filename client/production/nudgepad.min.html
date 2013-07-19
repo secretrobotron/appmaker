@@ -27,7 +27,7 @@
 <div id="RegisterFormModal">
 	<div id="RegisterContainer">
 		<div id="RegisterContent">
-			<div id="RegisterFormPrototypeLive">Your project is now live at</div>
+			<div id="RegisterFormMessage">Your project is now live at</div>
 			<a id="RegisterFormDomain" target="published"></a>
 			<div class="clear"></div>
 			<div id="RegisterFormInstructions">If you want to edit your project beyond this session, please type your email address below.</div>
@@ -118,6 +118,190 @@
 	  </div>
   </div>
 </div>
+<space id="BlogTheme" style="display: none;">
+head
+ scraps
+  title
+   tag title
+   content {{post.title Post Title}}
+  stylesheet
+   tag link
+   rel stylesheet
+   href project.css
+body
+ scraps
+  container
+   style
+    width 90%
+    max-width 800px
+    height 100%
+    margin 0 auto
+   scraps
+    block1
+     style
+      height auto
+      font-family Open Sans
+      width auto
+      font-size 48px
+      font-weight normal
+      color #333
+      text-decoration none
+      font-style normal
+      padding 10px
+     content {{post.title Post Title}}
+    block14
+     style
+      height auto
+      font-family Open Sans
+      width auto
+      font-size 18px
+      font-weight normal
+      color #333
+      text-decoration none
+      font-style normal
+      padding 10px
+     content {{post.content Lorem ipsum foobar }}
+</space>
+
+<div class="Tool" id="Boston">
+</div>
+  
+<div id="BostonStage" style="display: none;">
+  <div id="BostonStageHead"></div>
+  <div id="BostonStageBody"></div>
+  <div id="BostonStageBottomPadding"></div>
+  <style type="text/css" id="BostonRemoteSelections"></style>
+</div>
+
+<textarea id="BostonCodePanel"></textarea>
+
+<div id="BostonDimensions"></div>
+
+
+<div id="BostonMenu">
+	<div onclick="window.open(Boston.stage.activePage + '.html?' + new Date().getTime(),'published')">Visit</div>
+  <div onclick="Boston.blank()">New</div>
+  <div onclick="Boston.duplicatePage()">Duplicate</div>
+  <div onclick="Boston.renamePrompt()">Rename</div>
+  <div onclick="Boston.deletePage()">Delete</div>
+  <div onclick="Boston.importPrompt()">Import</div>
+  <div onclick="Launcher.open('Home')">Home</div>
+</div>
+<div id="BostonBar" style="display: none;">
+
+  <div title="menu" id="BostonBarMenuButton"></div>
+
+  <div title="Drop components onto your page" id="BostonComponentsTab" class="BostonBarTab"><img src="/nudgepad/tools/prototype/images/categories/sticky.png"></div>
+
+  <div title="Drop images onto your page" id="BostonImageTab" class="BostonBarTab"><img src="/nudgepad/tools/prototype/images/categories/image.png"></div>
+  
+  <div id="BostonDeviceSwitcher" onclick="Boston.stage.toggleDevice()">Device</div>
+  
+  <div id="BostonTimelineHolder">
+    <span class="BostonTimeline" id="BostonTimelinePosition" ondblclick="Boston.clearTimelinePrompt()"></span>
+    <input class="BostonTimeline" id="BostonTimeline" type="range" min="0" max="100" step="1" onclick="Boston.stage.goto($(this).val())" value="100">
+    <script type="text/javascript">
+      $('#BostonTimeline').on('slide', function () {
+        Boston.stage.goto($(this).val())
+    })</script>
+    
+  </div>
+  
+  <div id="BostonTabs"></div>
+  
+</div>
+
+<div id="BostonImagesRibbon" class="BostonRibbon">
+  
+	<div id="BostonUploadButton"><span>Upload</span><iframe src="/nudgepad.images.upload" allowtransparency="true" frameborder="0px" width="100%" height="100%" scrolling="no" style="position: absolute; bottom: 0px; left: 0px;"></iframe></div>
+	
+  <div id="BostonImagesList"></div>
+  
+</div>
+
+<div id="BostonComponentsRibbon" class="BostonRibbon">
+  <div id="BostonComponentsList"></div>
+</div>
+<space class="ComponentSet" path="mockup block">
+thumb
+ title Gray Block
+ content Block
+ style
+  background-color #7a8289
+block
+ style
+  background-color #7a8289
+  height 180px
+  width 220px
+  position absolute
+  font-family Helvetica
+  font-weight 200
+  font-size 15px
+  color #333
+  top 0
+  left 0
+</space>
+
+<space class="ComponentSet" path="mockup h1">
+thumb
+ title Header
+ content Header
+ style
+  background-color white
+header
+ style
+  font-size 52px
+  color #222
+  position absolute
+  font-family Helvetica
+  font-weight 200
+  top 0
+  left 0
+  margin 0
+  padding 0
+ tag h1
+ content Header
+</space>
+
+<space class="ComponentSet" path="mockup sticky">
+thumb
+ title Sticky Note
+ content Sticky
+ style
+  background-color #f4ed04
+  box-shadow 0px 1px 3px rgba(0,0,0,.6)
+stickyNote
+ style
+  background-color #f4ed04
+  position absolute
+  color #222
+  top 0
+  left 0
+  height auto
+  font-family Courier
+  width 120px
+  font-size 14px
+  line-height 120%
+  padding 10px
+  box-shadow 0px 1px 3px rgba(0,0,0,.6)
+ content I am a sticky note. I do not show up on your live site.
+ draft true
+</space>
+
+<space id="BostonBlankPage" style="display: none;">
+head
+ tag head
+ scraps
+  title
+   tag title
+   content Untitled
+  style
+   tag style
+   content body {font-family: Helvetica; font-weight: 200;}
+body
+ tag body
+ scraps
+</space>
 <div class="Tool" id="Domain">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
@@ -235,65 +419,6 @@
 	  <div class="clear"></div>
   </div>
 </div>
-<div class="Tool" id="Prototype">
-</div>
-  
-<div id="PrototypeStage" style="display: none;">
-  <div id="PrototypeStageHead"></div>
-  <div id="PrototypeStageBody"></div>
-  <div id="PrototypeStageBottomPadding"></div>
-  <style type="text/css" id="PrototypeRemoteSelections"></style>
-</div>
-
-<div id="PrototypeBar" style="display: none;">
-
-  <div title="menu" id="PrototypeBarMenuButton"></div>
-  
-  <div title="Text" id="PrototypeTextComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/text.png"></div>
-
-  <div title="Block" id="PrototypeBlockComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/block.png"></div>
-
-  <div title="Image" id="PrototypeImageComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/image.png"></div>
-
-  <div title="Sticky" id="stickyComponent" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/sticky.png"></div>
-  
-  <div title="Advanced" id="AdvancedComponent" style="display:none;" class="PrototypeBarComponent"><img src="/nudgepad/tools/prototype/images/categories/advanced.png"></div>
-  
-  <div id="PrototypeViewSwitcher" onclick="Prototype.stage.toggleView()">Device</div>
-  
-  <div id="PrototypeTimelineHolder">
-    <span class="PrototypeTimeline" id="PrototypeTimelinePosition" ondblclick="Prototype.clearTimelinePrompt()"></span>
-    <input class="PrototypeTimeline" id="PrototypeTimeline" type="range" min="0" max="100" step="1" onclick="Prototype.stage.goto($(this).val())" value="100">
-    <script type="text/javascript">
-      $('#PrototypeTimeline').on('slide', function () {
-        Prototype.stage.goto($(this).val())
-    })</script>
-    
-  </div>
-  
-  <div id="PrototypeTabs"><span>Index</span></div>
-  
-</div>
-
-<textarea id="PrototypeCodePanel"></textarea>
-
-<div id="PrototypeMenu">
-	<div onclick="window.open(Prototype.stage.activePage,'published')">Visit</div>
-  <div onclick="Prototype.blank()">New</div>
-  <div onclick="Prototype.duplicatePage()">Duplicate</div>
-  <div onclick="Prototype.renamePrompt()">Rename</div>
-  <div onclick="Prototype.deletePage()">Delete</div>
-  <div onclick="Prototype.importPrompt()">Import</div>
-  <div onclick="Launcher.open('Home')">Home</div>
-</div>
-
-<div id="PrototypeComponentsBar">
-	<div id="PrototypeComponentsBarUploadButton" class="PrototypeImageComponentOptions"><span>Upload</span><iframe src="/nudgepad.images.upload" allowtransparency="true" frameborder="0px" width="100%" height="100%" scrolling="no" style="position: absolute; bottom: 0px; left: 0px;"></iframe></div>
-  <div id="PrototypeComponentsList"></div>
-  <div id="PrototypeImagecomponentsList" class="PrototypeImageComponentOptions"></div>
-</div>
-
-<div id="PrototypeDimensions"></div>
 <div class="Tool" id="Server">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
