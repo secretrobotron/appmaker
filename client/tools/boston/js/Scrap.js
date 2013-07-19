@@ -177,7 +177,10 @@ Scrap.prototype.render = function (index) {
   // Turn body tags into divs during the render stage
   if (tag && tag === 'body') {
     $('#BostonStageBody').append(this.toHtml(function () {
-      this.div.tag = 'div'      
+      // this doesnt quite feel right yet
+      this.div.tag = 'div'
+      this.div.content = ''
+      this.setChildren(Scrap.devFilter)
       return this.div.toHtml()
     }))
     return this

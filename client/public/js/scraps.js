@@ -127,6 +127,20 @@ Scrap.prototype.selector = function () {
   return '#' + this.path.replace(/ /g, ' #')
 }
 
+Scrap.prototype.setChildren = function (filter) {
+  // If recursive
+  var children = this.get('scraps')
+  
+  if (!children)
+    return this
+  
+  var parent = this
+  children.each(function (id, scrap) {
+    parent.div.html(scrap.toHtml(filter))
+  })
+  return this
+}
+
 /**
  * Set the innerHTML.
  *
@@ -135,24 +149,15 @@ Scrap.prototype.selector = function () {
 Scrap.prototype.setContent = function () {
   
   // If leaf node
-  
   if (this.get('content'))
     this.div.html(this.get('content'))
   
   // If styles node
-  if (this.values.styles && this.values.styles instanceof Space) {
+  var styles = this.get('styles')
+  if (styles && styles instanceof Space) {
     var div = this.div
-    this.values.styles.each(function (key, value) {
+    styles.each(function (key, value) {
       div.html(Scrap.styleToCss(key, value.values))
-    })
-  }
-  
-  // If recursive
-  var children = this.get('scraps')
-  if (children) {
-    var parent = this
-    children.each(function (id, scrap) {
-      parent.div.html(scrap.toHtml())
     })
   }
   return this
@@ -233,6 +238,7 @@ Scrap.prototype.toHtml = function (filter) {
   this.div.attr('id', this.id)
   this.setProperties()
   this.setContent()
+  this.setChildren(filter)
   this.setStyle()
   this.setHandlers()
   if (filter)

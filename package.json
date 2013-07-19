@@ -13,7 +13,7 @@
    },
   "dependencies": {
     "space": ">=0.2.2",
-    "scraps": ">=0.3.0",
+    "scraps": ">=0.3.2",
     "markings" : ">=0.0.3",
     "speedcoach": ">=0.1.1",
     "socket.io": "*",
