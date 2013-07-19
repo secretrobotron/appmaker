@@ -124,13 +124,16 @@ Scrap.prototype.parentSelector = function () {
  * @return this
  */
 Scrap.prototype.render = function (context, index) {
+
+  var tag = this.get('tag')
   // dont render invisibles
-  if (this.values.tag && this.values.tag.match(/title|script|meta/))
+  if (tag && tag.match(/title|script|meta/))
     return this
   
-  if (this.values.tag === 'head') {
-    if (this.values.scraps) {
-      this.values.scraps.each(function (key, value) {
+  // For head elements, just render their children
+  if (tag === 'head') {
+    if (this.get('scraps')) {
+      this.get('scraps').each(function (key, value) {
         value.render(context)
       })
     }
@@ -140,15 +143,14 @@ Scrap.prototype.render = function (context, index) {
   var options = {draft : true}
   
   // Throw style tags into a div that we can easily empty
-  if (this.values.tag && this.values.tag.match(/style|link/)) {
+  if (tag && tag.match(/style|link/)) {
     this.setElementTag(context)
     this.setContent(context, options)
     $('#PrototypeStageHead').append(this.div.toHtml())
     
-    
     // temporary fix until we turn CSS into pure Space.
-    if (this.values.tag === 'style') {
-      var css = cssToSpace(this.values.content)
+    if (tag === 'style') {
+      var css = cssToSpace(this.get('content'))
       var bodyProperties = [
         'background',
         'background-color',
@@ -166,13 +168,11 @@ Scrap.prototype.render = function (context, index) {
       })
     }
     
-    
-    
     return this
   }
   
   // Turn body tags into divs during the render stage
-  if (this.values.tag && this.values.tag === 'body') {    
+  if (tag && tag === 'body') {    
     this.setElementTag(context)
     this.setContent(context, options)
     this.setStyle(context)

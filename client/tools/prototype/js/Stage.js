@@ -58,10 +58,8 @@ Prototype.stage.commit = function () {
   
   Project.set('pages ' + Prototype.stage.activePage, new Space(Prototype.page.toString()))
   Project.append('timelines ' + Prototype.stage.activePage + ' ' + timestamp, commit)
-  var html = new Page(Prototype.page.toString())
-  // todo: clean up published HTML
   
-  Explorer.set(Prototype.stage.activePage + '.html', html.toHtml())
+  Prototype.stage.publish()
   
   return diff
 }
@@ -73,18 +71,8 @@ Prototype.stage.dragAndDrop = function (scrap) {
   
   var halfWidth = 0
   var halfHeight = 0
-  var height = scrap.get('head style html height')
-  var width = scrap.get('head style html height')
-  if (!height || !width) {
-    var dimensions = Prototype.getPageDimensions(scrap)
-    // temp fix for sticky
-    if (isNaN(dimensions.width)) {
-      dimensions.width = 140
-      dimensions.height = 100
-    }
-    width = dimensions.width
-    height = dimensions.height
-  }
+  var height = scrap.get('head style html height') || 100
+  var width = scrap.get('head style html height') || 140
   width = parseFloat(width)
   height = parseFloat(height)
   var halfWidth = Math.round(width/2)
@@ -324,6 +312,12 @@ Prototype.stage.open = function (name) {
   Prototype.trigger('page')
   return ''
   
+}
+
+Prototype.stage.publish = function () {
+  var html = new Page(Prototype.page.toString())
+  // todo: clean up published HTML
+  Explorer.set(Prototype.stage.activePage + '.html', html.toHtml())
 }
 
 Prototype.stage.redo = function () {

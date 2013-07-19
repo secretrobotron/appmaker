@@ -8,7 +8,6 @@ Prototype.loadComponents = function () {
   Prototype.components = new Space()
   var list = $('#PrototypeComponentsList')
   list.html('')
-  console.log('hi')
   $('.ComponentSet').each(function () {
     var path = $(this).attr('path')
     var component = new Space($(this).text())

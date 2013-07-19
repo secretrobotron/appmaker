@@ -5,9 +5,8 @@
  */
 Page.prototype.render = function (context) {
   
-  for (var i in this.keys) {
-    var id = this.keys[i]
-    this.values[id].render(context)
-  }
+  this.each(function (key, value) {
+    value.render(context)
+  })
   return this
 }
