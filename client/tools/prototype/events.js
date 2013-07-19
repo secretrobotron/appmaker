@@ -76,7 +76,7 @@ Prototype.on('open', function () {
     Prototype.trigger('firstOpen')
   }
   
-  
+  $('#PrototypeComponentsTab').trigger('click')
   
 })
 
