@@ -79,8 +79,10 @@
     <script type="text/javascript" src="/nudgepad/tools/boston/js/EditHandle.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/Grid.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/ImagesRibbon.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/boston/js/ImportUrl.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/jquery.insertAt.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/jquery.scrap.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/boston/js/MenuCommands.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/Mouse.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/MoveHandle.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/js/OnCopy.js"></script>
@@ -283,11 +285,11 @@ body
 
 <div id="BostonMenu">
 	<div onclick="window.open(Boston.stage.activePage + '.html?' + new Date().getTime(),'published')">Visit</div>
-  <div onclick="Boston.blank()">New</div>
-  <div onclick="Boston.duplicatePage()">Duplicate</div>
-  <div onclick="Boston.renamePrompt()">Rename</div>
-  <div onclick="Boston.deletePage()">Delete</div>
-  <div onclick="Boston.importPrompt()">Import</div>
+  <div onclick="Boston.menu.blank()">New</div>
+  <div onclick="Boston.menu.duplicate()">Duplicate</div>
+  <div onclick="Boston.menu.renamePrompt()">Rename</div>
+  <div onclick="Boston.menu.delete()">Delete</div>
+  <div onclick="Boston.importUrlPrompt()">Import</div>
   <div onclick="Launcher.open('Home')">Home</div>
 </div>
 <div id="BostonBar" style="display: none;">
@@ -301,7 +303,7 @@ body
   <div id="BostonDeviceSwitcher" onclick="Boston.stage.toggleDevice()">Device</div>
   
   <div id="BostonTimelineHolder">
-    <span class="BostonTimeline" id="BostonTimelinePosition" ondblclick="Boston.clearTimelinePrompt()"></span>
+    <span class="BostonTimeline" id="BostonTimelinePosition" ondblclick="Boston.menu.clearTimelinePrompt()"></span>
     <input class="BostonTimeline" id="BostonTimeline" type="range" min="0" max="100" step="1" onclick="Boston.stage.goto($(this).val())" value="100">
     <script type="text/javascript">
       $('#BostonTimeline').on('slide', function () {

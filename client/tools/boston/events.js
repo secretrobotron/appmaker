@@ -39,7 +39,7 @@ Boston.on('open', function () {
     page = 'index'
   // Create an index page.
   if (!Project.get('pages ' + page))
-    Boston.create('index')
+    Boston.menu.create('index')
   Boston.stage.open(page)
   
   if (!navigator.userAgent.match(/iPad|iPhone|iPod/i)) {

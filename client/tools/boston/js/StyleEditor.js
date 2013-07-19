@@ -134,13 +134,13 @@ Boston.styleEditor.edit = function (scrap) {
    // Create a link to a new page that doesnt exist
    var newPageLink = $('<option>New Page</option>')
    newPageLink.on('click', function () {
-     var linkUrl = prompt('Enter the name of your new page', Boston.nextName(Boston.stage.activePage))
+     var linkUrl = prompt('Enter the name of your new page', Boston.menu.nextName(Boston.stage.activePage))
      if (linkUrl) {
        linkUrl = Permalink(linkUrl)
        Boston.stage.selection.patch('tag a\nhref ' + linkUrl)
        save_button.trigger('click')
        var currentPage = Boston.stage.activePage
-       Boston.duplicatePage(null, linkUrl, true)
+       Boston.menu.duplicate(null, linkUrl, true)
        Boston.stage.open(currentPage)
      }
    })

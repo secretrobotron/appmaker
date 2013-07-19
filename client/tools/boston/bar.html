@@ -9,7 +9,7 @@
   <div id="BostonDeviceSwitcher" onclick="Boston.stage.toggleDevice()">Device</div>
   
   <div id="BostonTimelineHolder">
-    <span class="BostonTimeline" id="BostonTimelinePosition" ondblclick="Boston.clearTimelinePrompt()"></span>
+    <span class="BostonTimeline" id="BostonTimelinePosition" ondblclick="Boston.menu.clearTimelinePrompt()"></span>
     <input class="BostonTimeline" id="BostonTimeline" type="range" min="0" max="100" step="1" onclick="Boston.stage.goto($(this).val())" value="100">
     <script type="text/javascript">
       $('#BostonTimeline').on('slide', function () {

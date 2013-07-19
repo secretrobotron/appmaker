@@ -30,7 +30,7 @@ WebMaker.fetch = function () {
 //              https://s3.amazonaws.com/makes.org/webmaker/thimble/postcard-for-a-friend_
 // https://webmaker.makes.org/
               Launcher.open('Boston')
-              Boston.create()
+              Boston.menu.create()
               Boston.import(url)
             })
             $('#Makes').append(template)

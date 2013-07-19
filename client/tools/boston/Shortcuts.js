@@ -55,18 +55,18 @@ Boston.shortcuts['shift+space'] = function () {
   }
 }
 
-Boston.shortcuts['meta+backspace'] = Boston.deletePage
+Boston.shortcuts['meta+backspace'] = Boston.menu.delete
 
-Boston.shortcuts['meta+o'] = Boston.spotlight
-Boston.shortcuts['ctrl+o'] = Boston.spotlight
+Boston.shortcuts['meta+o'] = Boston.menu.spotlight
+Boston.shortcuts['ctrl+o'] = Boston.menu.spotlight
 
 
-Boston.shortcuts['ctrl+n'] = Boston.blank
-Boston.shortcuts['meta+n'] = Boston.blank
+Boston.shortcuts['ctrl+n'] = Boston.menu.blank
+Boston.shortcuts['meta+n'] = Boston.menu.blank
 
 Boston.shortcuts['esc'] = Boston.stage.selection.clear
 
-Boston.shortcuts['shift+n'] = Boston.duplicatePage
+Boston.shortcuts['shift+n'] = Boston.menu.duplicate
 
 Boston.shortcuts['up'] = function (){Boston.stage.selection.move(0, -1)}
 Boston.shortcuts['left'] = function (){Boston.stage.selection.move(-1, 0)}
