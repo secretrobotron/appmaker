@@ -6,9 +6,9 @@
  */
 Scrap.prototype.onedit = '' // String, name of app to open.
 Scrap.prototype.edit = function (selectAll) {
-  
-  if (this.values.onedit && window[this.values.onedit])
-    window[this.values.onedit].open()
+  var tool = this.get('onedit')
+  if (tool && window[tool])
+    window[tool].open()
   
   // Default block editor
   else
@@ -25,15 +25,20 @@ Scrap.prototype.getPath = function () {
   return this.path.replace(/ /g, ' scraps ')
 }
 
+Scrap.devFilter = function () {
+  this.div.addClass('scrap')
+  this.div.attr('path', this.getPath())
+//  this.div.attr('page', Boston.stage.activePage)
+  this.div.attr('selector', this.selector())
+  return this.div.toHtml()
+}
+
 /**
  * @return {bool}
  */
 Scrap.prototype.isContentEditable = function () {
-  if (this.values.content_format === 'nl2br' || this.values.content_format === 'markdown')
-    return false
-  if (this.values.content && this.values.content.match(/\{\{.*\}\}/))
-    return false
-  if (this.values.tag && this.values.tag.match(/^(textarea|input|password|label|button|list|ul|ol)$/))
+  var tag = this.get('tag')
+  if (tag && tag.match(/^(textarea|input|password|label|button|ul|ol)$/))
     return false
   return true
 }
@@ -93,7 +98,7 @@ Scrap.prototype.move = function (x, y) {
 }
 
 Scrap.prototype.moveDown = function () {
-  if (!this.values.style)
+  if (!this.get('style'))
     this.set('style', new Space())
   
   if (this.get('style z-index') === undefined)
@@ -105,7 +110,7 @@ Scrap.prototype.moveDown = function () {
 }
 
 Scrap.prototype.moveUp = function () {
-  if (!this.values.style)
+  if (!this.get('style'))
     this.set('style', new Space())
   
   if (this.get('style z-index') === undefined)
@@ -123,7 +128,7 @@ Scrap.prototype.parentSelector = function () {
 /**
  * @return this
  */
-Scrap.prototype.render = function (context, index) {
+Scrap.prototype.render = function (index) {
 
   var tag = this.get('tag')
   // dont render invisibles
@@ -134,18 +139,16 @@ Scrap.prototype.render = function (context, index) {
   if (tag === 'head') {
     if (this.get('scraps')) {
       this.get('scraps').each(function (key, value) {
-        value.render(context)
+        value.render()
       })
     }
     return this
   }
   
-  var options = {draft : true}
-  
   // Throw style tags into a div that we can easily empty
   if (tag && tag.match(/style|link/)) {
-    this.setElementTag(context)
-    this.setContent(context, options)
+    this.setTag()
+    this.setContent()
     $('#BostonStageHead').append(this.div.toHtml())
     
     // temporary fix until we turn CSS into pure Space.
@@ -172,23 +175,19 @@ Scrap.prototype.render = function (context, index) {
   }
   
   // Turn body tags into divs during the render stage
-  if (tag && tag === 'body') {    
-    this.setElementTag(context)
-    this.setContent(context, options)
-    this.setStyle(context)
-//    this.div.addClass('scrap')
-//    this.div.attr('path', this.getPath())
-//    this.div.attr('selector', this.selector())
-    this.div.tag = 'div'
-    $('#BostonStageBody').append(this.div.toHtml())
+  if (tag && tag === 'body') {
+    $('#BostonStageBody').append(this.toHtml(function () {
+      this.div.tag = 'div'      
+      return this.div.toHtml()
+    }))
     return this
   }
   
   // Remove the style, the html, and the script
   if (index)
-    $(this.parentSelector()).insertAt(index, this.toHtml(context))
+    $(this.parentSelector()).insertAt(index, this.toHtml(Scrap.devFilter))
   else
-    $(this.parentSelector()).append(this.toHtml(context))
+    $(this.parentSelector()).append(this.toHtml(Scrap.devFilter))
   return this
 }
 
@@ -199,27 +198,9 @@ Scrap.prototype.selector = function () {
   return '#BostonStageBody>#' + selector
 }
 
-/**
- * Returns the HTML for a scrap without CSS or Script.
- *
- * @param {object} Context to evaluate any variables in.
- * @return {string}
- */
-Scrap.prototype.toHtml = function (context) {
-  var options = {draft : true}
-  this.setElementTag(context)
-  this.setContent(context, options)
-  this.setStyle(context)
-  this.div.addClass('scrap')
-  this.div.attr('path', this.getPath())
-//  this.div.attr('page', Boston.stage.activePage)
-  this.div.attr('selector', this.selector())
-  return this.div.toHtml()
-}
-
 Scrap.prototype.unlock = function () {
   
-  if (!this.values.locked)
+  if (!this.get('locked'))
     return true
   
   this.delete('locked')

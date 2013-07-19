@@ -349,7 +349,7 @@ Boston.stage.selection.patch = function (space) {
     var scrap = $(this).scrap()
     $(this).deselect()
     scrap.patch(space)
-    $(this).replaceWith(scrap.toHtml())
+    $(this).replaceWith(scrap.toHtml(Scrap.devFilter))
     scrap.element().selectMe()
   })
   Boston.stage.commit()

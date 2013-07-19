@@ -101,12 +101,10 @@ Blog.publishPost = function (name) {
     view = Blog.blankTheme
 
   view = new Page(view.toString())
-
-  var context = {}
-  context.project = Project
-  context.post = post.values
-  
-  Explorer.set(permalink + '.html', view.toHtml(context), function () {
+  var html = view.toHtml()
+  html = html.replace('Blog Post Title', post.get('title'))
+  html = html.replace('Blog Post Content', post.get('content'))
+  Explorer.set(permalink + '.html', html, function () {
     window.open(name + '.html', 'published')
   })
 }

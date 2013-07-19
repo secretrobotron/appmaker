@@ -317,7 +317,13 @@ Boston.stage.open = function (name) {
 Boston.stage.publish = function () {
   var html = new Page(Boston.page.toString())
   // todo: clean up published HTML
-  Explorer.set(Boston.stage.activePage + '.html', html.toHtml())
+  Explorer.set(Boston.stage.activePage + '.html', html.toHtml(function () {
+    // File draft scrap
+    if (this.get('draft') === 'true')
+      return ''
+    return this.div.toHtml()
+    
+  }))
 }
 
 Boston.stage.redo = function () {
