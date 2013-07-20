@@ -26,6 +26,10 @@ Scrap.prototype.getPath = function () {
 }
 
 Scrap.devFilter = function () {
+  
+  if (this.div.tag === 'script')
+    return ''
+  
   this.div.addClass('scrap')
   this.div.attr('path', this.getPath())
   // Remove JS
@@ -35,6 +39,14 @@ Scrap.devFilter = function () {
   })
 //  this.div.attr('page', Boston.stage.activePage)
   this.div.attr('selector', this.selector())
+  return this.div.toHtml()
+}
+
+Scrap.bodyFilter = function () {
+  // this doesnt quite feel right yet
+  this.div.tag = 'div'
+  this.div.content = ''
+  this.setChildren(Scrap.devFilter)
   return this.div.toHtml()
 }
 
@@ -181,13 +193,9 @@ Scrap.prototype.render = function (index) {
   
   // Turn body tags into divs during the render stage
   if (tag && tag === 'body') {
-    $('#BostonStageBody').append(this.toHtml(function () {
-      // this doesnt quite feel right yet
-      this.div.tag = 'div'
-      this.div.content = ''
-      this.setChildren(Scrap.devFilter)
-      return this.div.toHtml()
-    }))
+    var html = this.toHtml(Scrap.bodyFilter)
+    console.log(html)
+    $('#BostonStageBody').append(html)
     return this
   }
   
