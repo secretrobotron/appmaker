@@ -15,32 +15,34 @@ Boston.EditHandle.create = function (scrap) {
   })
   container.append(edit)
   
-  /*
+  
   // Tool to turn it into %
-  var percent = $('<div class="BostonEditStyleHandle">%</div>')
+  if (Boston.advanced) {
+  var percent = $('<div class="">%</div>')
   percent.on('tap', function () {
     if (scrap.get('style width') && scrap.get('style width').match('%'))
       scrap.toPixels()
     else
       scrap.toPercentage()
     Boston.stage.commit()
+    element.deselect()
     return false
   })
   container.append(percent)
 
   // Toggle position
-  var pos = $('<div class="BostonEditStyleHandle">Pos</div>')
+  var pos = $('<div class="">Pos</div>')
   pos.on('tap', function () {
     if (scrap.get('style position') === 'absolute')
       scrap.toRelative()
     else
       scrap.toAbsolute()
     Boston.stage.commit()
+    element.deselect()
     return false
   })
   container.append(pos)
-  */
-  
+  }
   
   element.parent().append(container)
   container.on("update", Boston.EditHandle.update)
