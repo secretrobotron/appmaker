@@ -1,4 +1,4 @@
 name WebMaker
 html tool.html
-js tool.js
+js make-api.js tool.js
 css tool.css
