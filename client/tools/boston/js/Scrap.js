@@ -165,6 +165,7 @@ Scrap.prototype.render = function (index) {
   // Throw style tags into a div that we can easily empty
   if (tag && tag.match(/style|link/)) {
     this.setTag()
+    this.setProperties()
     this.setContent()
     $('#BostonStageHead').append(this.div.toHtml())
     
@@ -194,7 +195,6 @@ Scrap.prototype.render = function (index) {
   // Turn body tags into divs during the render stage
   if (tag && tag === 'body') {
     var html = this.toHtml(Scrap.bodyFilter)
-    console.log(html)
     $('#BostonStageBody').append(html)
     return this
   }

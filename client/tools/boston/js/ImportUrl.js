@@ -4,6 +4,7 @@ Boston.importUrl = function (url) {
     var space = $.htmlToScraps(data)
     space = Boston.relativeToAbsolute(space.toString(), url)
     Boston.menu.create(null, space.toString())
+    Flasher.success('Imported ' + url)
   })
 }
 
