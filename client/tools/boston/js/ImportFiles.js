@@ -12,8 +12,12 @@ Boston.importFiles = function () {
       if (Project.get('pages ' + name))
         return true
       // If it does not exist, import it!
+      Explorer.get(filename, function (data) {
+        var space = $.htmlToScraps(data)
+        Boston.menu.create(name, space.toString())
+        
+      })
       
-      console.log('need to import %s', filename)
     })
 
   })

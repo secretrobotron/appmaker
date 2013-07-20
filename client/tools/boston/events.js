@@ -37,6 +37,7 @@ Boston.on('open', function () {
   var page = store.get('activePage') || 'index'
   if (!Project.get('pages ' + page))
     page = 'index'
+  // Todo: do we really want to do this?
   // Create an index page.
   if (!Project.get('pages ' + page))
     Boston.menu.create('index')

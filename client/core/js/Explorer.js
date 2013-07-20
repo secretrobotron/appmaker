@@ -46,6 +46,15 @@ Explorer.edit = function (path) {
   })
 }
 
+Explorer.get = function (path, callback) {
+  var req = {}
+  req.path = path
+  $.post( '/nudgepad.explorer.get', req, function (data) {
+    if (callback)
+      callback(data)
+  })
+}
+
 Explorer.mkdir = function (path, callback) {
   var req = {}
   req.path = path

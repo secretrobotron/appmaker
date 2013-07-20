@@ -1,10 +1,9 @@
 Boston.menu.blank = function () {
 
-  var page = new Space($('#BostonBlankPage').text())
   var pageName = prompt('Name your page', Boston.menu.nextName())
   if (!pageName)
     return null
-  Boston.menu.create(pageName, page)
+  Boston.menu.create(pageName, $('#BostonBlankPage').text())
 }
 
 
@@ -24,10 +23,8 @@ Boston.menu.clearTimelinePrompt = function () {
 
 
 /**
- * Creates a new page. todo: rename page param to edge
- *
  * @param {string} Name of the file
- * @param {Space} A first patch to initialize the page with.
+ * @param {string} A template to initialize the page with.
  * @return {string} The name of the created page
  */
 Boston.menu.create = function (name, template) {
@@ -38,13 +35,13 @@ Boston.menu.create = function (name, template) {
   if (Project.get('pages ' + name))
     return Flasher.error('A page named ' + name + ' already exists.')
   
-  var page = new Space()
+  var page = new Space(template)
   var timeline = new Space()
-  if (template && template.toString().length > 2) {
-    page = new Space(template.toString())
+  // If passed a template, make that the first "undo" step
+  if (template) {
     var commit = new Space()
     commit.set('author', Cookie.email)
-    commit.set('values', new Space(template.toString()))
+    commit.set('values', new Space(template))
     timeline.set(new Date().getTime(), commit)
   }
   
@@ -105,7 +102,7 @@ Boston.menu.duplicate = function (source, destination, skipPrompt) {
   if (source !== Boston.stage.activePage)
     return Boston.menu.create(destination, Project.get('pages').get(source))
   
-  return Boston.menu.create(destination, Boston.page)
+  return Boston.menu.create(destination, Boston.page.toString())
 }
 
 /**

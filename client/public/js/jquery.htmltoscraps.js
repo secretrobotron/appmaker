@@ -47,14 +47,31 @@
 }(DOMParser));
 
 
+$.inlineStyleToSpace = function (style) {
+  var rules = style.split(';')
+  var space = new Space()
+  rules.forEach(function (value, index) {
+    value = value.trim()
+    if (!value)
+      return true
+    var parts = value.split(/\:/)
+    space.set(parts[0].trim(), parts[1].trim())
+  })
+  return space
+}
+
 $.fn.toSpace = function () {
   var space = new Space()
   var el = $(this)
   var tag = $(this).get(0).tagName.toLowerCase()
   space.set('tag', tag)
   $($(this).get(0).attributes).each(function() {
-    space.set(this.nodeName, this.nodeValue)
+    if (this.nodeName === 'style')
+      space.set(this.nodeName, $.inlineStyleToSpace(this.nodeValue))
+    else
+      space.set(this.nodeName, this.nodeValue)
   })
+
   
   // if leaf node
   if (!$(this).children().length) {
