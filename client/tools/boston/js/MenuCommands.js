@@ -1,3 +1,5 @@
+Boston.menu.autopublish = true
+
 Boston.menu.blank = function () {
 
   var pageName = prompt('Name your page', Boston.menu.nextName())
@@ -50,6 +52,7 @@ Boston.menu.create = function (name, template) {
   
   Boston.stage.open(name)
   mixpanel.track("I created a new webpage")
+  Boston.menu.publish(name)
   return name
 }
 
@@ -119,6 +122,24 @@ Boston.menu.nextName = function (prefix) {
     if (!(prefix + i in Project.values.pages.values))
       return prefix + i
   }
+}
+
+Boston.menu.prettyPrint = true
+
+Boston.menu.publish = function (name) {
+  var page = Project.get('pages ' + name).toString()
+  var html = new Page(page).toHtml(function () {
+    // File draft scrap
+    if (this.get('draft') === 'true')
+      return ''
+    return this.div.toHtml()
+    
+  })
+  
+  if (Boston.menu.prettyPrint)
+    html = html_beautify(html)
+  
+  Explorer.set(name + '.html', html)
 }
 
 /**

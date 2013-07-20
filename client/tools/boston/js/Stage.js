@@ -4,7 +4,6 @@
  * We do a frame so the ribbon doesnt overlap the work area.
  * Its not actually a frame though, just a div with scroll.
  */
-Boston.stage.autopublish = true
 Boston.stage.version = 0 // how many steps in we are
 Boston.stage.percentElapsed = 100
 Boston.stage.currentView = store.get('BostonView') || 'mobile'
@@ -60,8 +59,9 @@ Boston.stage.commit = function () {
   Project.set('pages ' + Boston.stage.activePage, new Space(Boston.page.toString()))
   Project.append('timelines ' + Boston.stage.activePage + ' ' + timestamp, commit)
   
-  if (Boston.stage.autopublish)
-    Boston.stage.publish()
+  // Todo: move this out of here
+  if (Boston.menu.autopublish)
+    Boston.menu.publish(Boston.stage.activePage)
   
   return diff
 }
@@ -314,24 +314,6 @@ Boston.stage.open = function (name) {
   Boston.trigger('page')
   return ''
   
-}
-
-Boston.stage.prettyPrint = true
-
-Boston.stage.publish = function () {
-
-  var html = new Page(Boston.page.toString()).toHtml(function () {
-    // File draft scrap
-    if (this.get('draft') === 'true')
-      return ''
-    return this.div.toHtml()
-    
-  })
-  
-  if (Boston.stage.prettyPrint)
-    html = html_beautify(html)
-  
-  Explorer.set(Boston.stage.activePage + '.html', html)
 }
 
 Boston.stage.redo = function () {
