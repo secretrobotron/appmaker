@@ -2,7 +2,8 @@ Boston.importUrl = function (url) {
   $.post('/nudgepad.proxy', { url : url}, function (data) {
     
     var space = $.htmlToScraps(data)
-    Boston.menu.create(null, Boston.relativeToAbsolute(space.toString()).toString())
+    space = Boston.relativeToAbsolute(space.toString(), url)
+    Boston.menu.create(null, space.toString())
   })
 }
 
