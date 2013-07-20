@@ -1,8 +1,8 @@
 Boston.importUrl = function (url) {
-  $.get('/nudgepad.import/' + url, {}, function (data) {
-    Boston.page = new Page(data)
-    Boston.stage.commit()
-    Boston.stage.open(Boston.stage.activePage)
+  $.post('/nudgepad.proxy', { url : url}, function (data) {
+    
+    var space = $.htmlToScraps(data)
+    Boston.menu.create(null, space.toString())
   })
 }
 

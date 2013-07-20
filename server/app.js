@@ -334,6 +334,7 @@ require('./logout.js')(app)
 require('./logs.js')(app)
 require('./clear.js')(app)
 require('./stats.js')(app)
+require('./proxy.js')(app)
 require('./import.js')(app)
 
 
