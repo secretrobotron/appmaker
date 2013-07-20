@@ -214,6 +214,38 @@ Scrap.prototype.selector = function () {
   return '#BostonStageBody>#' + selector
 }
 
+Scrap.prototype.toAbsolute = function () {
+  this.set('style position', 'absolute')
+  this.element().css('position', 'absolute')
+}
+
+Scrap.prototype.toPercentage = function () {
+  var element = this.element()
+  var parentHeight = element.parent().height() || $(window).height()
+  var newHeight = Math.round(100*element.height()/parentHeight) + '%'
+  this.set('style height', newHeight)
+  element.css('height', newHeight)
+  
+  var parentWidth = element.parent().width() || $(window).width()
+  var newWidth = Math.round(100*element.width()/parentWidth) + '%'
+  this.set('style width', newWidth)
+  element.css('width', newWidth)
+}
+
+Scrap.prototype.toPixels = function () {
+  var element = this.element()
+  this.set('style height', element.height() + 'px')
+  element.css('height',  element.height() + 'px')
+  
+  this.set('style width', element.width() + 'px')
+  element.css('width',  element.width() + 'px')
+}
+
+Scrap.prototype.toRelative = function () {
+  this.delete('style position')
+  this.element().css('position', '')
+}
+
 Scrap.prototype.unlock = function () {
   
   if (!this.get('locked'))

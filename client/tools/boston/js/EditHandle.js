@@ -3,21 +3,48 @@ Boston.EditHandle = {}
 
 Boston.EditHandle.create = function (scrap) {
   var element = scrap.element()
-  var div = $('<div class="BostonEditHandle"></div>')
-  div.attr('value', scrap.getPath())
-  div.addClass('handle editHandle ' + scrap.id + 'Handle')
+  var container = $('<div class="BostonEditHandle"></div>')
+  container.attr('value', scrap.getPath())
+  container.addClass('handle editHandle ' + scrap.id + 'Handle')
   
   var edit = $('<div class="BostonEditStyleHandle"></div>')
   edit.on('tap', function () {
     Boston.styleEditor.edit(scrap)
-    div.remove()
+    container.remove()
     return false
   })
-  div.append(edit)
+  container.append(edit)
   
-  element.parent().append(div)
-  div.on("update", Boston.EditHandle.update)
-  div.trigger("update")
+  /*
+  // Tool to turn it into %
+  var percent = $('<div class="BostonEditStyleHandle">%</div>')
+  percent.on('tap', function () {
+    if (scrap.get('style width') && scrap.get('style width').match('%'))
+      scrap.toPixels()
+    else
+      scrap.toPercentage()
+    Boston.stage.commit()
+    return false
+  })
+  container.append(percent)
+
+  // Toggle position
+  var pos = $('<div class="BostonEditStyleHandle">Pos</div>')
+  pos.on('tap', function () {
+    if (scrap.get('style position') === 'absolute')
+      scrap.toRelative()
+    else
+      scrap.toAbsolute()
+    Boston.stage.commit()
+    return false
+  })
+  container.append(pos)
+  */
+  
+  
+  element.parent().append(container)
+  container.on("update", Boston.EditHandle.update)
+  container.trigger("update")
 }
 
 Boston.EditHandle.update = function () {
