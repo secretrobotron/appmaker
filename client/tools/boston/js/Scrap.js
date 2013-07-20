@@ -28,6 +28,11 @@ Scrap.prototype.getPath = function () {
 Scrap.devFilter = function () {
   this.div.addClass('scrap')
   this.div.attr('path', this.getPath())
+  // Remove JS
+  _.each(this.div.attrs, function (value, key, obj) {
+    if (key.match(/^on/))
+      delete obj[key]
+  })
 //  this.div.attr('page', Boston.stage.activePage)
   this.div.attr('selector', this.selector())
   return this.div.toHtml()
