@@ -29,7 +29,6 @@
     "wrench": "*",
     "async": "*",
     "marked": "*",
-    "jquery": "*",
     "utile": "*",
     "http-proxy": "=0.10.1",
     "commander": "*",
