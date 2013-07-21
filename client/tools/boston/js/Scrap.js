@@ -170,7 +170,9 @@ Scrap.prototype.render = function (index) {
     $('#BostonStageHead').append(this.div.toHtml())
     
     // temporary fix until we turn CSS into pure Space.
-    if (tag === 'style') {
+    // temporay fix. need to handle styles property
+    if (tag === 'style' && this.get('content')) {
+      
       var css = cssToSpace(this.get('content'))
       var bodyProperties = [
         'background',
