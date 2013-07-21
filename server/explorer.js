@@ -94,6 +94,21 @@ var Explorer = function (app) {
       res.send(contents)
     })
   })
+  
+  /**
+   * Get a file API.
+   * path
+   */
+  app.post(app.pathPrefix + 'explorer.getFolder', app.checkId, function(req, res, next) {
+    var path = app.paths['private'] + req.body.path.trim().replace(/ /g, '/')
+    var output = app.paths['private'] + 'temp.space'
+    exec('space ' + path + ' ' + output, function () {
+      res.set('Content-Type', 'text/plain')
+      res.sendfile(output, function () {
+        fs.unlink(output)
+      })
+    })
+  })
 
   /**
    * Remove a file API.

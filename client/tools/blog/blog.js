@@ -65,6 +65,33 @@ Blog.permalink = function (string) {
   return string.toLowerCase().replace(/[^a-z0-9- _\.]/gi, '').replace(/ /g, '-')
 }
 
+Blog.pressPost = function (postString, pageString) {
+  var post = new Space(postString)
+  var html = new Page(pageString).toHtml()
+  html = html.replace('Blog Post Title', post.get('title'))
+  html = html.replace('Blog Post Content', post.get('content'))
+  html = html_beautify(html)
+  return html
+}
+
+// Temporary routine for migration
+Blog.publishAll = function () {
+  Explorer.getFolder('posts', function (data) {
+    var posts = new Space(data)
+    posts.each(function (filename, post) {
+      var permalink = Blog.permalink(filename.replace(/\.space/, ''))
+      var template = post.get('template')
+      var view = Project.get('pages ' + template)
+      if (!view)
+        view = Blog.blankTheme
+      var pressedHtml = Blog.pressPost(post.toString(), view.toString())
+      Explorer.set(permalink + '.html', pressedHtml, function () {
+        Flasher.success('published ' + permalink)
+      })
+    })
+  })
+}
+
 Blog.refresh = function () {
   $('#BlogPosts').html('')
   if (!Project.get('posts'))
@@ -89,27 +116,6 @@ Blog.refresh = function () {
     Blog.editPost(Blog.activePost)
   else
     Blog.createPost()
-}
-
-Blog.publishPost = function (name) {
-  var post = Project.get('posts ' + name)
-  var permalink = Blog.permalink(name)
-  var template = post.get('template')
-
-  var view = Project.get('pages ' + template)
-  if (!view)
-    view = Blog.blankTheme
-
-  view = new Page(view.toString())
-  var html = view.toHtml()
-  html = html.replace('Blog Post Title', post.get('title'))
-  html = html.replace('Blog Post Content', post.get('content'))
-  
-  html = html_beautify(html)
-  
-  Explorer.set(permalink + '.html', html, function () {
-    window.open(name + '.html', 'published')
-  })
 }
 
 Blog.savePost = function () {
@@ -142,7 +148,17 @@ Blog.savePost = function () {
   Blog.activePost = name
   
   // Open post in new tab
-  Blog.publishPost(name)
+  var permalink = Blog.permalink(name)
+  var template = post.get('template')
+  var view = Project.get('pages ' + template)
+  if (!view)
+    view = Blog.blankTheme
+  
+  var pressedHtml = Blog.pressPost(post.toString(), view.toString())
+  Explorer.set(permalink + '.html', pressedHtml, function () {
+    window.open(name + '.html', 'published')
+  })
+
 }
 
 Blog.updatePermalink = function () {
