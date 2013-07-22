@@ -42,6 +42,20 @@ AppMaker.install = function () {
         console.log(data)
     })
   })
+
+  $.ajax({
+    url: "/nudgepad/tools/appmaker/install.html",
+    type: "get",
+    dataType : 'text'
+  }).done(function (response, textStatus, jqXHR){
+    Explorer.create('install.html', response.toString(), function (data) {
+      console.log(data)
+      if (!data)
+        Flasher.success('Install File Created')
+      else
+        console.log(data)
+    })
+  })
 }
 
 // http://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
