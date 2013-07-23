@@ -80,7 +80,8 @@ AppMaker.selectText = function (containerid) {
 // 100x-1000x that amount.
 AppMaker.qrCode = function (containerid) {
   
-  var link = 'http://' + document.location.host + '/manifest.webapp'
+//  var link = 'http://' + document.location.host + '/manifest.webapp'
+  var link = 'http://' + document.location.host + '/install.html'
   ImagePreview('<div id="qrCode"><div id="AppMakerManifestLink">' + link + '</div>')
   
   var qrcode = new QRCode("qrCode", {
