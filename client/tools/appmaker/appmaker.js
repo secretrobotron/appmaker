@@ -71,3 +71,24 @@ AppMaker.selectText = function (containerid) {
     }
 }
 
+
+//  (~ 4kb. Could save critical info + a link to more)
+// also, when next gen qr codes come out (animated or higher res), could easily store
+// 100x-1000x that amount.
+AppMaker.qrCode = function (containerid) {
+  
+  
+  ImagePreview('<div id="qrCode">')
+  
+  var qrcode = new QRCode("qrCode", {
+      text: 'http://' + document.location.host + '/',
+      width: 512,
+      height: 512,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+  })
+}
+
+
+

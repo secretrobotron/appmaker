@@ -68,6 +68,7 @@
     <script type="text/javascript" src="/nudgepad/core/js/Screens.js"></script>
     <script type="text/javascript" src="/nudgepad/core/js/Socket.js"></script>
     <script type="text/javascript" src="/nudgepad/core/js/TextPrompt.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/appmaker/qrcode.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/appmaker/appmaker.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/appmaker/Shortcuts.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/blog/blog.js"></script>
@@ -179,6 +180,11 @@
 		  <a class="ToolRightButton" onclick="Explorer.edit('manifest.webapp');">
 		  	Edit Manifest
 		  </a>
+		  
+		  <a class="ToolRightButton" onclick="AppMaker.qrCode()">
+		  	QR Code
+		  </a>
+		  
 		  
 		  <a class="ToolRightButton" id="AppMakerManifestUrlLink" onclick="AppMaker.selectText('AppMakerManifestUrlLink')">http://</a>
 		<div class="clear"></div>

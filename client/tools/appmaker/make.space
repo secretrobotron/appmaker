@@ -1,4 +1,4 @@
 name AppMaker
 html tool.html
-js appmaker.js Shortcuts.js
+js qrcode.js appmaker.js Shortcuts.js
 css tool.css fire.css
