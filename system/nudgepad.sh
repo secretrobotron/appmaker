@@ -316,10 +316,6 @@ case "$1" in
   sudo tail -n 30 -f $logsPath/panelMon.txt
 ;;
 
-'tool')
-  space tool.space $clientPath/tools/$2
-;;
-
 'traffic')
   if [ -n "$2" ]
     then

@@ -129,28 +129,7 @@ Phone: 1-415-937-1984
 
 #### Installing on Localhost
 
-The best way to develop a NudgePad Community tool is to install a copy of NudgePad on localhost.
-
-NudgePad currently works best on Mac OS X and Ubuntu.
-
-NudgePad requires node v0.8.*. NudgePad does NOT currently work reliably with
-node v0.10.x due to a proxy/websocket (issue #1).
-
-NudgePad also requires a few programs: git, imagemagick, sendmail, and mon.
-
-To install for development on Mac OS X:
-
-    $ cd ~
-    $ git clone https://YOURFORK
-    $ # see the tasks in the install folder to install required stuff
-    $ npd start
-    $ # Go to http://localhost
-
-Occasionally you'll need to update your environment's PATH variable to make
-sure that the node_modules/.bin folder is included. For example, you may need
-to add this to your .bash_profile or .bashrc:
-
-    PATH=$PATH:~/node_modules/.bin
+Instructions for installing are now in install.md (https://github.com/nudgepad/nudgepad/blob/master/install.md)
 
 #### Naming Your Community Tool
 
@@ -178,17 +157,7 @@ if they have a bad experience--Breck!
 Community Tools in NudgePad are meant to be modular and sandboxed and contained in one
 folder.
 
-You can create a new tool at the command line like this:
-
-    $ npd tool draw
-
-This will create a folder ~/nudgepad/client/tools/draw that stores all the
-files for your tool.
-
-You'd then want to update the files tool.js and make.space with the name
-you chose.
-
-You could also create a tool manually by replicating the basic skeleton
+You can create a tool manually by replicating the basic skeleton
 like this:
 
 ```
@@ -197,8 +166,7 @@ tool.js var Draw = new Tool('Draw')
  Draw.set('color', 'blue')
 tool.css 
 tool.html 
-make.space name Draw
- html tool.html
+make.space html tool.html
  js tool.js
  css tool.css
 ```
@@ -434,31 +402,8 @@ How to Host NudgePad 1.0
 
 __CAUTION: NudgePad 1.0 comes out later this year, right now we are in BETA, so things are still broken and subject to change. These steps ALMOST work. However, they definitely do not work flawlessly. Eventually installing NudgePad will be as simple as "npm install nudgepad". Until then, we are here to help you setup hosting, so don't be shy about contacting us via email or IRC.__
 
-The steps for setting up a server:
+Instructions for installing are now in install.md (https://github.com/nudgepad/nudgepad/blob/master/install.md)
 
-1. Install the requirements: Node 0.8.* git imagemagick sendmail mon
-
-2. Clone NudgePad to your homefolder:
-
-    $ cd ~
-    $ git clone https://github.com/nudgepad/nudgepad.git
-
-3. For Linux, add the "projects" group to your machine. Add your user to that group.
-
-4. Install the required npm modules.
-
-5. Install the "npd" command:
-
-    $ echo "alias npd='~/nudgepad/system/nudgepad.sh'" >> ~/.bash_profile
-    $ # The next line is to allow you to run npd as sudo if you need to for some things.
-    $ echo "alias sudo='sudo '" >> ~/.bash_profile
-    $ source ~/.bash_profile
-
-6. Start NudgePad:
-
-    $ npd start
-
-7. Go to http://yourserverdomain
 
 How to Contribute to NudgePad 1.0 core
 ======================================
@@ -571,8 +516,8 @@ It's currently written mostly in BASH, but node scripts are welcome as well.
 
 A fully running NudgePad server consists of:
 
-- A control panel Express app running on port 3000
-- user projects which run on ports 3001 - 8000
+- A control panel Express app running on port 4004
+- user projects which run on ports 4005 - 9000
 - An http-proxy app which sits in front of all of those on port 80.
 
 Those ports are also configurable.
