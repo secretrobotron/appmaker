@@ -1,8 +1,22 @@
+createFromTemplate ()
+{
+  domain=$1
+  template=$2
+  if [[ "$template" == *.space ]]
+    then
+      echo Creating from space file 1>&2
+      space $template $projectsPath/$domain
+    else
+      echo Creating from dir 1>&2
+      cp -R $template $projectsPath/$domain
+  fi
+}
+
 createProject ()
 {
   domain=$1
   ownerEmail=$2
-  cloneFile=$3
+  template=$3
   if [ -z $domain ]
     then
       echo ERROR. No domain entered. Your project needs a name. Usage: create domain owner@owner.com template.space
@@ -19,11 +33,11 @@ createProject ()
       return 1
   fi
   
-  if [ -n "$cloneFile" ]
+  if [ -n "$template" ]
     then
-      space $cloneFile $projectsPath/$domain
+      createFromTemplate $domain $template
     else
-      # echo NO cloneFile provided. Creating blank project from blank.
+      # echo NO source provided. Creating blank project from blank.
       cp -R blank $projectsPath/$domain
       mkdir $projectsPath/$domain/private/
       mkdir $projectsPath/$domain/private/team

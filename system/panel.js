@@ -99,7 +99,7 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
   var email = req.body.email
   // Allow someone to pass a raw space file to create from
   var clone = req.body.clone
-  // todo: allow someone to create from a dir
+  // todo: allow someone to create from a dir already on server. fastest method
   var dir = req.body.dir
   // todo: Allow someone to create from a zip file
   var zip = req.body.zip
@@ -137,7 +137,11 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
       
     })
   } else {
-    exec(systemPath + '/nudgepad.sh create ' + domain.toLowerCase() + ' ' + email, function (err, stdout, stderr) {
+    if (dir)
+      dir = ' ' + dir
+    else
+      dir = ''
+    exec(systemPath + '/nudgepad.sh create ' + domain.toLowerCase() + ' ' + email + dir, function (err, stdout, stderr) {
       if (err) {
         console.log('Error creating project %s: err:%s stderr:%s', domain, err, stderr)
         return res.send('Error creating project: ' + err, 400)
