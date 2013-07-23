@@ -51,7 +51,23 @@ Files.renderExplorer = function () {
   explorer += '<tr class="FilesExplorerHeader"><td>Filename</td><td></td><td></td><td></td><td>Size</td><td>Age</td></tr>'
   
   var path = (Files.get('path') ? Files.get('path') + ' ' : '')
-  files.each(function (filename, file) {
+  
+  // Sort files into this order: folders, then files.
+  // if A is a Folder and B is a File, A before B.
+  // if A and B are same type, A before B.
+  
+  var folders = _.filter(files.keys, function(key) {
+    return !files.get(key).get('timeSinceLastChange')
+  }).sort()
+  
+  var theFiles = _.filter(files.keys, function(key) {
+    return files.get(key).get('timeSinceLastChange')
+  }).sort()
+  
+  var filenames = folders.concat(theFiles)
+  
+  filenames.forEach(function (filename) {
+    var file = files.get(filename)
     var row = '<tr'
     // if is file
     if (file.get('timeSinceLastChange')) {
