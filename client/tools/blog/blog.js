@@ -68,8 +68,11 @@ Blog.permalink = function (string) {
 Blog.pressPost = function (postString, pageString) {
   var post = new Space(postString)
   var html = new Page(pageString).toHtml()
-  html = html.replace('Blog Post Title', post.get('title'))
+  html = html.replace(/Blog Post Title/g, post.get('title'))
   html = html.replace('Blog Post Content', post.get('content'))
+  var timestamp = parseFloat(post.get('timestamp'))
+  var date = moment(timestamp).format('MMMM Do YYYY, h:mm:ss a')
+  html = html.replace(/Blog Post Date/g, date)
   html = html_beautify(html)
   return html
 }
@@ -80,13 +83,12 @@ Blog.publishAll = function () {
     var posts = new Space(data)
     posts.each(function (filename, post) {
       post = new Space(post.toString())
-      var permalink = Blog.permalink(filename.replace(/\.space/, ''))
+      var permalink = Blog.permalink(post.get('title'))
       var template = post.get('template')
       var view = Project.get('pages ' + template)
       if (!view)
         view = new Space($('#BlogTheme').text())
-      var pressedHtml = Blog.pressPost(post.toString(),
-        view.toString())
+      var pressedHtml = Blog.pressPost(post.toString(), view.toString())
       Explorer.set(permalink + '.html', pressedHtml, function () {
         Flasher.success('published ' + permalink)
       })
