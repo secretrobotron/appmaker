@@ -7,6 +7,7 @@ var httpProxy = require('http-proxy'),
 
 process.title = 'nudgepadProxy'
 var errorPage = fs.readFileSync(__dirname + '/error.html', 'utf8')
+var startingPage = fs.readFileSync(__dirname + '/starting.html', 'utf8')
 var starting = {}
 var dataPath = '/nudgepad/'
 var logsPath = dataPath + 'logs/'
@@ -45,8 +46,8 @@ var notFoundHandler = function (req, res) {
           return res.end(errorPage)
         }
         startProject(domain)
-        res.writeHead(500)
-        return res.end(errorPage)
+        res.writeHead(200)
+        return res.end(startingPage)
         
         
       }
