@@ -2,7 +2,7 @@ createFromTemplate ()
 {
   domain=$1
   template=$2
-  code=$3
+  shareCode=$3
   
   if [[ "$template" == *.space ]]
     then
@@ -10,13 +10,20 @@ createFromTemplate ()
       space $template $projectsPath/$domain
     else
       echo Creating from dir 1>&2
-      # Check code
-      if [ ! -f $template/private/code-is-$code.txt ]
+      # Check shareCode
+      if [ ! -f $template/private/sharecode.txt ]
         then
-          echo ERROR. Invalid code: $template/private/code-is-$code.txt
+          echo ERROR. No Share Code present.
           exit 1
       fi
-      cp -R $template $projectsPath/$domain
+      
+      if [[ "$shareCode" == `cat $template/private/sharecode.txt` ]]
+        then
+          cp -R $template $projectsPath/$domain
+        else
+          echo ERROR. Invalid Share Code: $shareCode
+          exit 1
+      fi
   fi
 }
 
@@ -25,7 +32,7 @@ createProject ()
   domain=$1
   ownerEmail=$2
   template=$3
-  code=$4
+  shareCode=$4
   
   if [ -z $domain ]
     then
@@ -45,7 +52,7 @@ createProject ()
   
   if [ -n "$template" ]
     then
-      createFromTemplate $domain $template $code
+      createFromTemplate $domain $template $shareCode
     else
       # echo NO source provided. Creating blank project from blank.
       cp -R blank $projectsPath/$domain

@@ -43,6 +43,20 @@ function validateEmail(email) {
   return re.test(email)
 }
 
+// Generate a domain if one is not provided
+app.generateDomain = function (req, res, next) {
+  if (req.body.domain)
+    return next()
+  
+  var max = 9999999
+  var min = 1000000
+  
+  var random = Math.floor(Math.random() * (max - min + 1)) + min
+  req.body.domain = 'project' + random.toString() + Domain.tld
+  console.log('generated domain: %s', req.body.domain)
+  return next()
+}
+
 app.validateDomain = function (req, res, next) {
 
   // Warning message if trying to access panel via IP and not hostname
@@ -93,7 +107,7 @@ app.checkId = function (req, res, next) {
 
 // Create a project
 // On success, message is the login link 
-app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, function(req, res, next){
+app.post('/create', app.checkId, app.generateDomain, app.validateDomain, app.isDomainAvailable, function(req, res, next){
   
   var domain = req.body.domain
   var email = req.body.email
@@ -107,8 +121,8 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
   var git = req.body.git
   // todo: allow someont to create from a url
   var url = req.body.url
-  // A code to verify you have permission to create this project
-  var code = req.body.code
+  // A sharecode to verify you have permission to create this project
+  var sharecode = req.body.sharecode
   
   var timestamp = req.body.timestamp || new Date().getTime()
   var requestTime = new Date().getTime()
@@ -143,11 +157,11 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
       dir = ' ' + dir
     else
       dir = ''
-    if (code)
-      code = ' ' + code
+    if (sharecode)
+      sharecode = ' ' + sharecode
     else
-      code = ''
-    exec(systemPath + '/nudgepad.sh create ' + domain.toLowerCase() + ' ' + email + dir + code, function (err, stdout, stderr) {
+      sharecode = ''
+    exec(systemPath + '/nudgepad.sh create ' + domain.toLowerCase() + ' ' + email + dir + sharecode, function (err, stdout, stderr) {
       if (err) {
         console.log('Error creating project %s: err:%s stderr:%s', domain, err, stderr)
         return res.send('Error creating project: ' + err, 400)
