@@ -48,6 +48,8 @@ node v0.10.x due to a proxy/websocket (issue #1).
     # enter your hostname
     echo $newHostname | sudo tee /etc/hostname >/dev/null
     sudo hostname $newHostname
+    # Name your hostname with the root domain of the server
+    # We recommend then adding a *.domain.com CNAME record to your DNS
 
 ### Nix & Mac - Clone NudgePad
 
