@@ -100,7 +100,7 @@ case "$1" in
 
 'create')
   speedcoach "start of create"
-  if createProject $2 $3 $4
+  if createProject $2 $3 $4 $5
     then
       speedcoach "before start project"
       if startProject $2

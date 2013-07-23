@@ -107,6 +107,8 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
   var git = req.body.git
   // todo: allow someont to create from a url
   var url = req.body.url
+  // A code to verify you have permission to create this project
+  var code = req.body.code
   
   var timestamp = req.body.timestamp || new Date().getTime()
   var requestTime = new Date().getTime()
@@ -141,7 +143,11 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
       dir = ' ' + dir
     else
       dir = ''
-    exec(systemPath + '/nudgepad.sh create ' + domain.toLowerCase() + ' ' + email + dir, function (err, stdout, stderr) {
+    if (code)
+      code = ' ' + code
+    else
+      code = ''
+    exec(systemPath + '/nudgepad.sh create ' + domain.toLowerCase() + ' ' + email + dir + code, function (err, stdout, stderr) {
       if (err) {
         console.log('Error creating project %s: err:%s stderr:%s', domain, err, stderr)
         return res.send('Error creating project: ' + err, 400)

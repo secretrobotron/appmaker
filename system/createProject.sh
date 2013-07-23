@@ -2,12 +2,20 @@ createFromTemplate ()
 {
   domain=$1
   template=$2
+  code=$3
+  
   if [[ "$template" == *.space ]]
     then
       echo Creating from space file 1>&2
       space $template $projectsPath/$domain
     else
       echo Creating from dir 1>&2
+      # Check code
+      if [ ! -f $template/private/code-is-$code.txt ]
+        then
+          echo ERROR. Invalid code: $template/private/code-is-$code.txt
+          exit 1
+      fi
       cp -R $template $projectsPath/$domain
   fi
 }
@@ -17,6 +25,8 @@ createProject ()
   domain=$1
   ownerEmail=$2
   template=$3
+  code=$4
+  
   if [ -z $domain ]
     then
       echo ERROR. No domain entered. Your project needs a name. Usage: create domain owner@owner.com template.space
@@ -35,7 +45,7 @@ createProject ()
   
   if [ -n "$template" ]
     then
-      createFromTemplate $domain $template
+      createFromTemplate $domain $template $code
     else
       # echo NO source provided. Creating blank project from blank.
       cp -R blank $projectsPath/$domain
