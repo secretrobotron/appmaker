@@ -1,58 +1,3 @@
-createProjectNix ()
-{
-  speedcoach "start of createProjectNix"
-  
-  domain=$1
-  ownerEmail=$2
-  cloneFile=$3
-  
-  if [ -n "$cloneFile" ]
-    then
-      space $cloneFile $projectsPath/$domain
-    else
-      # echo NO cloneFile provided. Creating blank project from blank.
-      cp -R blank $projectsPath/$domain
-      mkdir $projectsPath/$domain/private/
-      mkdir $projectsPath/$domain/private/team
-      # Create this here for mon so we dont have to create it later.
-      # theres probably a way to get mon to make it itself if it does not exist
-      touch $projectsPath/$domain/private/app.log.txt
-      
-  fi
-  speedcoach "$domain created from template"
-  createOwnerFile $domain $ownerEmail
-  chmod -R 770 $projectsPath/$domain/
-  
-  # todo: how can we do this without sudo? sudo cause a 400ms delay
-  sudo $systemPath/createUser.sh $domain $USER
-  speedcoach "$domain project dir chowned"
-  
-  
-}
-
-createProjectMac ()
-{
-
-  domain=$1
-  ownerEmail=$2
-  cloneFile=$3
-  
-  if [ -n "$cloneFile" ]
-    then
-      space $cloneFile $projectsPath/$domain
-    else
-      # echo NO cloneFile provided. Creating blank project from blank.
-      cp -R blank $projectsPath/$domain
-      mkdir $projectsPath/$domain/private/
-      mkdir $projectsPath/$domain/private/team
-  fi
-  
-  createOwnerFile $domain $ownerEmail
-  cd $projectsPath/$domain
-  sudo chown -R $macUser:staff $projectsPath/$domain
-
-}
-
 createProject ()
 {
   domain=$1
@@ -73,12 +18,34 @@ createProject ()
       echo $domain already exists
       return 1
   fi
-  # this could be better
+  
+  if [ -n "$cloneFile" ]
+    then
+      space $cloneFile $projectsPath/$domain
+    else
+      # echo NO cloneFile provided. Creating blank project from blank.
+      cp -R blank $projectsPath/$domain
+      mkdir $projectsPath/$domain/private/
+      mkdir $projectsPath/$domain/private/team
+      # Create this here for mon so we dont have to create it later.
+      # theres probably a way to get mon to make it itself if it does not exist
+      touch $projectsPath/$domain/private/app.log.txt
+      
+  fi
+  
+  speedcoach "$domain created"
+  # Create the owner file in the team folder
+  createOwnerFile $domain $ownerEmail
+  
   if isNix
     then
-      createProjectNix $1 $2 $3
+      # Allow the group and owner full access to dir
+      chmod -R 770 $projectsPath/$domain/
+      # todo: how can we do this without sudo? sudo cause a 400ms delay
+      sudo $systemPath/createUser.sh $domain $USER
     else
-      createProjectMac $1 $2 $3
+      # Change owner in case this script as called as root
+      sudo chown -R $macUser:staff $projectsPath/$domain
   fi
   
   # if on localhost, append to the hosts file to add the domain
