@@ -52,14 +52,15 @@ Blog.getList = function () {
   Explorer.getFolder('posts', function (data) {
     var posts = new Space(data)
     var list = new Space()
+    list.set('list', new Space())
     posts.each(function (filename, post) {
       post = new Space(post.toString())
       var permalink = Blog.permalink(post.get('title'))
       var link = new Space()
       link.set('tag', 'a')
-      link.set('href', permalink)
+      link.set('href', permalink + '.html')
       link.set('content', post.get('title'))
-      list.set('scraps ' + permalink, link)
+      list.set('list scraps ' + permalink, link)
     })
     console.log(list.toString())
   })
