@@ -79,12 +79,14 @@ Blog.publishAll = function () {
   Explorer.getFolder('posts', function (data) {
     var posts = new Space(data)
     posts.each(function (filename, post) {
+      post = new Space(post.toString())
       var permalink = Blog.permalink(filename.replace(/\.space/, ''))
       var template = post.get('template')
       var view = Project.get('pages ' + template)
       if (!view)
-        view = Blog.blankTheme
-      var pressedHtml = Blog.pressPost(post.toString(), view.toString())
+        view = new Space($('#BlogTheme').text())
+      var pressedHtml = Blog.pressPost(post.toString(),
+        view.toString())
       Explorer.set(permalink + '.html', pressedHtml, function () {
         Flasher.success('published ' + permalink)
       })
@@ -152,7 +154,7 @@ Blog.savePost = function () {
   var template = post.get('template')
   var view = Project.get('pages ' + template)
   if (!view)
-    view = Blog.blankTheme
+    view = new Space($('#BlogTheme').text())
   
   var pressedHtml = Blog.pressPost(post.toString(), view.toString())
   Explorer.set(permalink + '.html', pressedHtml, function () {
