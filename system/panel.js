@@ -97,7 +97,17 @@ app.post('/create', app.checkId, app.validateDomain, app.isDomainAvailable, func
   
   var domain = req.body.domain
   var email = req.body.email
+  // Allow someone to pass a raw space file to create from
   var clone = req.body.clone
+  // todo: allow someone to create from a dir
+  var dir = req.body.dir
+  // todo: Allow someone to create from a zip file
+  var zip = req.body.zip
+  // todo: Allow someone to create from a git repo
+  var git = req.body.git
+  // todo: allow someont to create from a url
+  var url = req.body.url
+  
   var timestamp = req.body.timestamp || new Date().getTime()
   var requestTime = new Date().getTime()
   

@@ -399,6 +399,18 @@ __CAUTION: NudgePad 1.0 comes out later this year, right now we are in BETA, so 
 
 Instructions for installing are now in install.md (https://github.com/nudgepad/nudgepad/blob/master/install.md)
 
+### Creating a Project API
+
+Post to /create
+
+```
+domain newproject.breck.com
+email breck7@gmail.com
+timestamp 1234325434
+
+```
+
+
 
 How to Contribute to NudgePad 1.0 core
 ======================================
