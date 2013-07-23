@@ -113,22 +113,31 @@ app.post('/create', app.checkId, app.generateDomain, app.validateDomain, app.isD
   var email = req.body.email
   // Allow someone to pass a raw space file to create from
   var clone = req.body.clone
-  // todo: allow someone to create from a dir already on server. fastest method
+  // allow someone to create from a dir already on server. fastest method
   var dir = req.body.dir
+  // A sharecode to verify you have permission to create this project
+  var sharecode = req.body.sharecode
+  
+  // Allow someone to redirect them to a tool
+  var tool = req.body.tool
   // todo: Allow someone to create from a zip file
   var zip = req.body.zip
   // todo: Allow someone to create from a git repo
   var git = req.body.git
   // todo: allow someont to create from a url
   var url = req.body.url
-  // A sharecode to verify you have permission to create this project
-  var sharecode = req.body.sharecode
   
   var timestamp = req.body.timestamp || new Date().getTime()
   var requestTime = new Date().getTime()
   
   if (!email)
     email = 'owner@' + domain
+  
+  if (tool)
+    tool = '&tool=' + tool
+  
+  else
+    tool = ''
   
   console.log('creating project: %s', domain)
   
@@ -148,7 +157,7 @@ app.post('/create', app.checkId, app.generateDomain, app.validateDomain, app.isD
         if (req.body.ajax)
           res.send(stdout)
         else
-          res.redirect(stdout + '&newProject=true&timestamp=' + timestamp)
+          res.redirect(stdout + '&newProject=true&timestamp=' + timestamp + tool)
       })
       
     })
@@ -171,7 +180,7 @@ app.post('/create', app.checkId, app.generateDomain, app.validateDomain, app.isD
       if (req.body.ajax)
         res.send(stdout)
       else
-        res.redirect(stdout + '&newProject=true&timestamp=' + timestamp)
+        res.redirect(stdout + '&newProject=true&timestamp=' + timestamp + tool)
     })
   }
   
