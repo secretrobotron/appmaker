@@ -4,10 +4,6 @@
   "description": "Make websites, apps and more in your browser.",
   "repository": "git://github.com/nudgepad/nudgepad",
   "main": "nudgepad.js",
-  "bin" : {
-    "nudgepad" : "system/nudgepad.sh",
-    "np" : "system/nudgepad.sh"
-   },
    "scripts": {
      "test": "make test"
    },

@@ -58,12 +58,21 @@ node v0.10.x due to a proxy/websocket (issue #1).
 ### Nix & Mac - Install NudgePad
 
     cd nudgepad
-    npm install
+    # need to install modules globally so different sites can use em
+    sudo npm install -g
 
 ### Nix & Mac - Start NudgePad
 
-    npd start
+    ~/nudgepad/system/nudgepad.sh start
     # Go to http://localhost
+
+### Nix & Mac - Create "npd" shortcut. Optional.
+
+    echo "alias npd='~/nudgepad/system/nudgepad.sh'" >> ~/.bash_profile
+    # The next line is to allow you to run npd as sudo if you need to for some things.
+    echo "alias sudo='sudo '" >> ~/.bash_profile
+    # Reload your bash_profile to get the npd command
+    source ~/.bash_profile
 
 
 Troubleshooting
