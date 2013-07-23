@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="/nudgepad/tools/boston/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/boston/css/spectrum.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/boston/css/styleEditor.css" type="text/css"/>
-    <link rel="stylesheet" href="/nudgepad/tools/domain/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/files/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/github/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/home/home.css" type="text/css"/>
+    <link rel="stylesheet" href="/nudgepad/tools/move/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/server/tool.css" type="text/css"/>
+    <link rel="stylesheet" href="/nudgepad/tools/share/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/sketch/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/team/tool.css" type="text/css"/>
     <link rel="stylesheet" href="/nudgepad/tools/webmaker/tool.css" type="text/css"/>
@@ -106,12 +107,13 @@
     <script type="text/javascript" src="/nudgepad/tools/boston/events.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/Shortcuts.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/boston/realtime.js"></script>
-    <script type="text/javascript" src="/nudgepad/tools/domain/tool.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/files/files.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/files/dragAndDrop.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/github/tool.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/home/home.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/move/tool.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/server/tool.js"></script>
+    <script type="text/javascript" src="/nudgepad/tools/share/tool.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/sketch/sketch.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/sketch/tool.js"></script>
     <script type="text/javascript" src="/nudgepad/tools/team/tool.js"></script>
@@ -431,34 +433,6 @@ body
  tag body
  scraps
 </space>
-<div class="Tool" id="Domain">
-	<div class="ToolNav">
-		<div class="ToolNavContainer">
-  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
-		  	Back
-		  </div>
-			<a href="/nudgepad.export" target="blank" class="ToolRightButton" title="Download Project as Space File">
-		  	Export
-		  </a>
-		  <a onclick="Files.import()" class="ToolRightButton" title="Import a Space File">
-		  	Import
-		  </a>
-		<div class="clear"></div>
-		</div>
-	</div>
-  <div class="ToolContainer">
-    
-    
-		<div class="ToolSectionLabel">
-		  Clone
-		</div>
-		<input id="DomainDomain" class="ToolInput" placeholder=""></input>
-	  <div class="ToolPrimaryButton" onclick="Domain.cloneProject()">
-		  Clone
-		</div>
-		
-	</div>
-</div>
 <div class="Tool" id="Files">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
@@ -548,6 +522,41 @@ body
 	  <div class="clear"></div>
   </div>
 </div>
+<div class="Tool" id="Move">
+	<div class="ToolNav">
+		<div class="ToolNavContainer">
+  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
+		  	Back
+		  </div>
+			<a href="/nudgepad.export" target="blank" class="ToolRightButton" title="Download Project as Space File">
+		  	Export
+		  </a>
+		  <a onclick="Files.import()" class="ToolRightButton" title="Import a Space File">
+		  	Import
+		  </a>
+		<div class="clear"></div>
+		</div>
+	</div>
+  <div class="ToolContainer">
+    
+    
+		<div class="ToolSectionLabel">
+		  Copy to new domain
+		</div>
+		<div class="ToolInputLabel">
+	  	New Domain
+	  </div>
+		<input id="MoveDomain" class="ToolInput" placeholder="" />
+		<div class="ToolInputLabel">
+	  	Server
+	  </div>
+		<input id="MoveServer" class="ToolInput" placeholder="" />
+	  <div class="ToolPrimaryButton" onclick="Move.cloneProject()">
+		  Copy
+		</div>
+		
+	</div>
+</div>
 <div class="Tool" id="Server">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
@@ -585,6 +594,26 @@ body
 </div>
 
 
+<div class="Tool" id="Share">
+	<div class="ToolNav">
+		<div class="ToolNavContainer">
+  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
+		  	Back
+		  </div>
+		<div class="clear"></div>
+		</div>
+	</div>
+  <div class="ToolContainer">
+    
+    
+		<div class="ToolInputLabel">
+	  	Share Button
+	  </div>
+    
+    <textarea id="ShareCode"></textarea>
+		
+	</div>
+</div>
 <div class="Tool" id="Sketch">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">

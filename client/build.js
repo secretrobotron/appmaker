@@ -61,29 +61,14 @@ var tools = _.without(fs.readdirSync(toolsPath), '.DS_Store')
 _.each(tools, function (toolName) {
   var toolDir = toolsPath + toolName + '/'
   
+  
+  // Ignore if no make.space file
+  if (!fs.existsSync(toolDir + 'make.space', 'utf8'))
+    return true
+    
   var settings = new Space(fs.readFileSync(toolDir + 'make.space', 'utf8'))
-  var files
-  
 
-  files = settings.get('css').split(/ /g)
-  _.each(files, function (filename) {
-    
-    if (filename.match('.css')) {
-      code.css += fs.readFileSync(toolDir + filename, 'utf8')
-      includes.css += '    <link rel="stylesheet" href="/nudgepad/tools/' + toolName + '/' + filename + '" type="text/css"/>\n'
-    }
-    // directory
-    else {
-      var subfiles = _.without(fs.readdirSync(toolDir + filename), '.DS_Store')
-      _.each(subfiles, function (subfile) {
-        code.css += fs.readFileSync(toolDir + filename + '/' + subfile, 'utf8')
-        includes.css += '    <link rel="stylesheet" href="/nudgepad/tools/' + toolName + '/' + filename + '/' + subfile + '" type="text/css"/>\n'
-      })
-    }
-    
-  })
-  
-  files = settings.get('js').split(/ /g)
+  var files = settings.get('js').split(/ /g)
   _.each(files, function (filename) {
     
     if (filename.match('.js')) {
@@ -101,7 +86,31 @@ _.each(tools, function (toolName) {
     
   })
   
-  files = settings.get('html').split(/ /g)
+  // CSS is optional
+  files = []
+  if (settings.get('css'))
+    files = settings.get('css').split(/ /g)
+  _.each(files, function (filename) {
+    
+    if (filename.match('.css')) {
+      code.css += fs.readFileSync(toolDir + filename, 'utf8')
+      includes.css += '    <link rel="stylesheet" href="/nudgepad/tools/' + toolName + '/' + filename + '" type="text/css"/>\n'
+    }
+    // directory
+    else {
+      var subfiles = _.without(fs.readdirSync(toolDir + filename), '.DS_Store')
+      _.each(subfiles, function (subfile) {
+        code.css += fs.readFileSync(toolDir + filename + '/' + subfile, 'utf8')
+        includes.css += '    <link rel="stylesheet" href="/nudgepad/tools/' + toolName + '/' + filename + '/' + subfile + '" type="text/css"/>\n'
+      })
+    }
+    
+  })
+  
+  // HTML is optional
+  files = []
+  if (settings.get('html'))
+    files = settings.get('html').split(/ /g)
   _.each(files, function (filename) {
     
     if (filename.match('.html')) {

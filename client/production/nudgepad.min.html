@@ -322,34 +322,6 @@ body
  tag body
  scraps
 </space>
-<div class="Tool" id="Domain">
-	<div class="ToolNav">
-		<div class="ToolNavContainer">
-  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
-		  	Back
-		  </div>
-			<a href="/nudgepad.export" target="blank" class="ToolRightButton" title="Download Project as Space File">
-		  	Export
-		  </a>
-		  <a onclick="Files.import()" class="ToolRightButton" title="Import a Space File">
-		  	Import
-		  </a>
-		<div class="clear"></div>
-		</div>
-	</div>
-  <div class="ToolContainer">
-    
-    
-		<div class="ToolSectionLabel">
-		  Clone
-		</div>
-		<input id="DomainDomain" class="ToolInput" placeholder=""></input>
-	  <div class="ToolPrimaryButton" onclick="Domain.cloneProject()">
-		  Clone
-		</div>
-		
-	</div>
-</div>
 <div class="Tool" id="Files">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
@@ -439,6 +411,41 @@ body
 	  <div class="clear"></div>
   </div>
 </div>
+<div class="Tool" id="Move">
+	<div class="ToolNav">
+		<div class="ToolNavContainer">
+  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
+		  	Back
+		  </div>
+			<a href="/nudgepad.export" target="blank" class="ToolRightButton" title="Download Project as Space File">
+		  	Export
+		  </a>
+		  <a onclick="Files.import()" class="ToolRightButton" title="Import a Space File">
+		  	Import
+		  </a>
+		<div class="clear"></div>
+		</div>
+	</div>
+  <div class="ToolContainer">
+    
+    
+		<div class="ToolSectionLabel">
+		  Copy to new domain
+		</div>
+		<div class="ToolInputLabel">
+	  	New Domain
+	  </div>
+		<input id="MoveDomain" class="ToolInput" placeholder="" />
+		<div class="ToolInputLabel">
+	  	Server
+	  </div>
+		<input id="MoveServer" class="ToolInput" placeholder="" />
+	  <div class="ToolPrimaryButton" onclick="Move.cloneProject()">
+		  Copy
+		</div>
+		
+	</div>
+</div>
 <div class="Tool" id="Server">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
@@ -476,6 +483,26 @@ body
 </div>
 
 
+<div class="Tool" id="Share">
+	<div class="ToolNav">
+		<div class="ToolNavContainer">
+  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
+		  	Back
+		  </div>
+		<div class="clear"></div>
+		</div>
+	</div>
+  <div class="ToolContainer">
+    
+    
+		<div class="ToolInputLabel">
+	  	Share Button
+	  </div>
+    
+    <textarea id="ShareCode"></textarea>
+		
+	</div>
+</div>
 <div class="Tool" id="Sketch">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">

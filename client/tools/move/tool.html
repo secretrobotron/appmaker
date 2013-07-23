@@ -1,4 +1,4 @@
-<div class="Tool" id="Domain">
+<div class="Tool" id="Move">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
   		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
@@ -17,11 +17,18 @@
     
     
 		<div class="ToolSectionLabel">
-		  Clone
+		  Copy to new domain
 		</div>
-		<input id="DomainDomain" class="ToolInput" placeholder=""></input>
-	  <div class="ToolPrimaryButton" onclick="Domain.cloneProject()">
-		  Clone
+		<div class="ToolInputLabel">
+	  	New Domain
+	  </div>
+		<input id="MoveDomain" class="ToolInput" placeholder="" />
+		<div class="ToolInputLabel">
+	  	Server
+	  </div>
+		<input id="MoveServer" class="ToolInput" placeholder="" />
+	  <div class="ToolPrimaryButton" onclick="Move.cloneProject()">
+		  Copy
 		</div>
 		
 	</div>

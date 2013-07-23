@@ -2093,6 +2093,12 @@ License: MIT
   min-width: 400px;
   border: 1px solid #ddd;
 }
+#ShareCode {
+  width: 400px;
+  height: 300px;
+  font-family: monospace;
+}
+
 #Sketch {
 
 }

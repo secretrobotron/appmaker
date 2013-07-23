@@ -85,6 +85,8 @@ Boston.on('close', function () {
   
   $(document).off("slidestart", Boston.pen.draw)
   
+  $('#BostonImagesRibbon,#BostonComponentsRibbon').hide()
+  
   $('#BostonStage,#BostonBar').hide()
   
   Boston.off('selection', Boston.broadcastSelection)

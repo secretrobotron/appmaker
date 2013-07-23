@@ -1,38 +1,31 @@
-var Domain = new Tool('Domain')
-Domain.set('color', 'rgba(36, 65, 112, 1)')
-Domain.set('path', '')
-Domain.set('description', 'Change your project\'s domain.')
+var Move = new Tool('Move')
+Move.set('color', 'rgba(36, 65, 112, 1)')
+Move.set('path', '')
+Move.set('description', 'Move or copy your project to a new domain.')
+Move.set('beta', 'true')
 
-Domain.import = function () {
-  TextPrompt.open('Import a Project to this Domain', '', function (val) {
+Move.import = function () {
+  TextPrompt.open('Import a Project to this Move', '', function (val) {
     $.post('/nudgepad.import', {space : val}, function (err) {
       Flasher.success('Imported files.')
     })
   })
 }
 
-Domain.on('open', function () {
-  var domain = $('#DomainDomain').val('copyof' + document.location.host)
+Move.on('open', function () {
+  $('#MoveDomain').val('copyof' + document.location.host)
+  $('#MoveServer').val(Project.get('hostname'))
 })
 
-Domain.cloneProject = function () {
-  var domain = $('#DomainDomain').val()
-  
-  // Allow for moving of domains
-  if (domain.match(/ /)) {
-    var parts = domain.split(/ /)
-    domain = parts[0]
-    var panel = parts[1]
-  }
-  // Panel is the domain running the nudgepad panel server
-  else
-    var panel = Project.get('hostname')
+Move.cloneProject = function () {
+  var domain = $('#MoveDomain').val()
+  var server = $('#MoveServer').val()
   
   $.get('/nudgepad.export', {}, function (data) {
     
     
     var newForm = $('<form>', {
-        'action': 'http://' + panel + '/create',
+        'action': 'http://' + server + '/create',
 //        'target': '_blank',
         'method' : 'post'
     })
