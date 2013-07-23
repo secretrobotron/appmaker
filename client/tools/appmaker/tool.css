@@ -43,3 +43,12 @@
   box-shadow: inset 5px 0px 0px blue;
 }
 
+#AppMakerManifestLink {
+  background: white;
+  width: 410px;
+  user-select: auto;
+  -webkit-user-select: auto;
+  -moz-user-select: text;
+  cursor: pointer;
+  
+}

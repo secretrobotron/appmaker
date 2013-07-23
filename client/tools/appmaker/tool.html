@@ -1,27 +1,32 @@
 <div class="Tool" id="AppMaker">
 	<div class="ToolNav">
 		<div class="ToolNavContainer">
-  		<div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
+  		
+		  <!--
+		  <div class="ToolSquareButton ToolBackButton" onclick="Launcher.open('Home')">
 		  	Back
 		  </div>
-		  <!--
+		  
 		  <div class="DraggableThumb" value="FireHeader">
 		    Header
 		  </div>
 		  <div class="DraggableThumb" value="FireButton">
 		    Button
 		  </div>
-		  -->
+		  
 		  <a class="ToolRightButton" onclick="Explorer.edit('manifest.webapp');">
 		  	Edit Manifest
 		  </a>
 		  
+		  		  <a class="ToolRightButton" id="AppMakerManifestUrlLink" onclick="AppMaker.selectText('AppMakerManifestUrlLink')">http://</a>
+		  -->
+		  
 		  <a class="ToolRightButton" onclick="AppMaker.qrCode()">
-		  	QR Code
+		  	Install
 		  </a>
 		  
 		  
-		  <a class="ToolRightButton" id="AppMakerManifestUrlLink" onclick="AppMaker.selectText('AppMakerManifestUrlLink')">http://</a>
+
 		<div class="clear"></div>
 		</div>
 	</div>
