@@ -62,6 +62,8 @@ node v0.10.x due to a proxy/websocket (issue #1).
     cd nudgepad
     # need to install modules globally so different sites can use em
     sudo npm install -g
+    # then install it locally, because npm is weird :)
+    npm install
 
 ### Nix & Mac - Start NudgePad
 
