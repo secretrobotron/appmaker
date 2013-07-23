@@ -20,7 +20,7 @@ var runningPath = dataPath + 'running/'
 var portsPath = dataPath + 'ports/'
 var tempPath = dataPath + 'temp/'
 var systemPath = __dirname
-var port = process.argv[3] || 3000
+var port = process.argv[3] || 4004
 
 var Domain = require(panelPath + '/Domain')
 Domain.tld = '.' + hostname

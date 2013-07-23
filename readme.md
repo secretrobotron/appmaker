@@ -511,8 +511,8 @@ It's currently written mostly in BASH, but node scripts are welcome as well.
 
 A fully running NudgePad server consists of:
 
-- A control panel Express app running on port 3000
-- user projects which run on ports 3001 - 8000
+- A control panel Express app running on port 4004
+- user projects which run on ports 4005 - 9000
 - An http-proxy app which sits in front of all of those on port 80.
 
 Those ports are also configurable.
