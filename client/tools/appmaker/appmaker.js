@@ -14,6 +14,9 @@ AppMaker.on('open', function () {
       .append(element)
     element.show()
   }
+  
+  $( '#AppMakerStage' ).html('<iframe src="/" width="100%" height="100%"></iframe>')
+  
   $( "#AppMakerStage" ).droppable(options)
   $( '#AppMakerStage' ).selectable()
   $( ".DraggableThumb" ).draggable({ helper: "clone" })
