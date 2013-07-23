@@ -67,9 +67,13 @@ Blog.permalink = function (string) {
 
 Blog.pressPost = function (postString, pageString) {
   var post = new Space(postString)
-  var html = new Page(pageString).toHtml()
+  var html = new Page(pageString).toHtml(function () {
+    this.div.content = this.div.content.replace('Blog Post Content', post.get('content'))
+    if (this.get('content_format') === 'markdown')
+      this.div.content = marked(this.div.content)
+    return this.div.toHtml()
+  })
   html = html.replace(/Blog Post Title/g, post.get('title'))
-  html = html.replace('Blog Post Content', post.get('content'))
   var timestamp = parseFloat(post.get('timestamp'))
   var date = moment(timestamp).format('MMMM Do YYYY, h:mm:ss a')
   html = html.replace(/Blog Post Date/g, date)
