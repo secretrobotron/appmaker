@@ -68,6 +68,9 @@ $.fn.toSpace = function () {
   $($(this).get(0).attributes).each(function() {
     if (this.nodeName === 'style')
       space.set(this.nodeName, $.inlineStyleToSpace(this.nodeValue))
+    // Skip ID tag for now since Scraps uses it as the root.
+    else if (this.nodeName === 'id')
+      return true
     else
       space.set(this.nodeName, this.nodeValue)
   })
@@ -128,21 +131,23 @@ $.htmlToScraps = function (html) {
 // does html contain <head>?
 // does html contain <body>?
 //
-  if (html.match(/\<head\>/) && !html.match(/\<body\>/))
+  // If it has a head but no body, just read head
+  if (html.match(/\<head/) && !html.match(/\<body/))
     return space.delete('body')
   
-  if (html.match(/\<head\>/) && html.match(/\<body\>/))
+  // If it has a head AND body, return both
+  if (html.match(/\<head/) && html.match(/\<body/))
     return space
 
-  if (!html.match(/\<head\>/) && !html.match(/\<body\>/)) {
+  // if it has no head, and node body, return body scraps
+  if (!html.match(/\<head/) && !html.match(/\<body/)) {
     space.delete('head')
     return space.get('body scraps')
   }
   
-  if (!html.match(/\<head\>/) && html.match(/\<body\>/)) {
-    space.delete('head')
-    return space
-  }
+  // if it has no head, and just a body, just return body
+  if (!html.match(/\<head/) && html.match(/\<body/))
+    return space.delete('head')
 
   return space
 }
