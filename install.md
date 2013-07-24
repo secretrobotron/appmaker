@@ -72,6 +72,7 @@ Instructions are for Ubuntu
 ### Create NudgePad folder
 
     sudo mkdir /nudgepad
+    sudo chown `whoami`:`whoami` /nudgepad
 
 ### Install mon
 
