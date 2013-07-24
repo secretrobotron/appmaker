@@ -21,6 +21,9 @@ var portsPath = dataPath + 'ports/'
 var tempPath = dataPath + 'temp/'
 var systemPath = __dirname
 var port = process.argv[3] || 4004
+var panelRedirect = null
+if (process.argv.length > 4)
+  panelRedirect = process.argv[4]
 
 var Domain = require(panelPath + '/Domain')
 Domain.tld = '.' + hostname
@@ -35,7 +38,16 @@ app.use(express.logger({
   stream : logFile
 }))
 
-app.use('/', express.static(panelPath, { maxAge: 31557600000 }))
+// If the serfer has no UI, launch panel with default NudgePad UI
+if (!panelRedirect)
+  app.use('/', express.static(panelPath, { maxAge: 31557600000 }))
+
+// Else, redirect GET requests to the white labelled UI.
+else {
+  app.get('/', function (req, res) {
+    res.redirect(panelRedirect)
+  })
+}
 
 // http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
 function validateEmail(email) { 

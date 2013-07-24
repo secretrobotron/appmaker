@@ -12,7 +12,6 @@ if [ ! -d "$projectsPath" ]
     mkdir -p $tempPath
     mkdir -p $logsPath
     mkdir -p $backupPath
-    mkdir -p $panelPath
     mkdir -p $privatePath
     fixPermissions
 fi

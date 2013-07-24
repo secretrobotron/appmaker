@@ -6,7 +6,6 @@ fixPermissions ()
   chmod 710 $projectsPath
   chmod 700 $logsPath
   chmod 700 $tempPath
-  chmod 700 $panelPath
   chmod 700 $backupPath
   chmod 700 $privatePath
   
