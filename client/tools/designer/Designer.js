@@ -6,7 +6,7 @@ Designer.set('description', 'Design pages for your project.')
 Designer.page = new Page()
 Designer.edge = new Space()
 Designer.stage = {}
-Designer.stage.activePage = 'index'
+Designer.stage.activePage = null
 Designer.menu = {}
 // store.get('activePage')
 Designer.stage.selection = {}

@@ -116,10 +116,10 @@ Designer.menu.duplicate = function (source, destination, skipPrompt) {
  */
 Designer.menu.nextName = function (prefix) {
   var prefix = prefix || 'untitled'
-  if (!(prefix in Project.values.pages.values))
+  if (!Project.get('pages ' + prefix))
     return prefix
   for (var i = 1; i < 1000; i++) {
-    if (!(prefix + i in Project.values.pages.values))
+    if (!Project.get('pages ' + prefix + i))
       return prefix + i
   }
 }

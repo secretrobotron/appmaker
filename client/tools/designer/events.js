@@ -34,14 +34,12 @@ Designer.on('open', function () {
   // Prevent Images from dragging on Firefox
   $(document).on('dragstart', 'img', function(event) { event.preventDefault()})
   
-  var page = store.get('activePage') || 'index'
+  // Open the last open page, or create a new untitled page.
+  var page = store.get('activePage')
   if (!Project.get('pages ' + page))
-    page = 'index'
-  // Todo: do we really want to do this?
-  // Create an index page.
-  if (!Project.get('pages ' + page))
-    Designer.menu.create('index')
-  Designer.stage.open(page)
+    Designer.menu.create()
+  else
+    Designer.stage.open(page)
   
   if (!navigator.userAgent.match(/iPad|iPhone|iPod/i)) {
     // iPad fixeds
