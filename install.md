@@ -1,35 +1,40 @@
 Installing NudgePad
 ===================
 
-The best way to develop a NudgePad Community tool is to install a copy of NudgePad on localhost.
-
-NudgePad currently works best on Mac OS X and Nix (mostly used on Ubuntu).
-
-NudgePad requires node v0.8.*. NudgePad does NOT currently work reliably with
-node v0.10.x due to a proxy/websocket (issue #1).
-
 ### Nix - Update your system (instructions are for Ubunutu)
 
     sudo apt-get update
     sudo apt-get upgrade
     sudo apt-get install git gcc make imagemagick sendmail-bin python-software-properties python g++
 
+### Nix & Mac - Create NudgePad folder
+
+    sudo mkdir /nudgepad
+
+
+### Mac - Change /nudgepad owner
+
+    sudo chown $whoami:staff /nudgepad
+
 ### Nix & Mac - Install mon
 
-    cd
+    cd /nudgepad
     git clone https://github.com/visionmedia/mon.git
     cd mon
     sudo make install
 
 ### Nix & Mac - Install N
 
-    cd ~
+    cd /nudgepad
     git clone https://github.com/visionmedia/n.git
     cd n
     sudo make install
 
 ### Nix & Mac - Install Node 0.8.25
 
+NudgePad requires node v0.8.*. NudgePad does NOT currently work reliably with node v0.10.x due to a proxy/websocket (issue #1).
+
+    cd /nudgepad
     sudo n 0.8.25
 
 ### Nix & Mac - Increase the Number of iNotify Watches (is this still necessary?)
@@ -53,7 +58,7 @@ node v0.10.x due to a proxy/websocket (issue #1).
 
 ### Nix & Mac - Clone NudgePad
 
-    cd ~
+    cd /nudgepad
     # Put your fork here
     git clone https://github.com/nudgepad/nudgepad.git
 
@@ -67,12 +72,12 @@ node v0.10.x due to a proxy/websocket (issue #1).
 
 ### Nix & Mac - Start NudgePad
 
-    ~/nudgepad/system/nudgepad.sh start
+    /nudgepad/nudgepad/system/nudgepad.sh start
     # Go to http://localhost
 
 ### Nix & Mac - Create "npd" shortcut. Optional.
 
-    echo "alias npd='~/nudgepad/system/nudgepad.sh'" >> ~/.bash_profile
+    echo "alias npd='/nudgepad/nudgepad/system/nudgepad.sh'" >> ~/.bash_profile
     # The next line is to allow you to run npd as sudo if you need to for some things.
     echo "alias sudo='sudo '" >> ~/.bash_profile
     # Reload your bash_profile to get the npd command
@@ -87,9 +92,31 @@ Occasionally you'll need to update your environment's PATH variable to make
 sure that the node_modules/.bin folder is included. For example, you may need
 to add this to your .bash_profile or .bashrc:
 
-    PATH=$PATH:~/node_modules/.bin
+    PATH=$PATH:/nudgepad/nudgepad/node_modules/.bin
 
 Or on Ubuntu:
 
-    PATH=$PATH:/home/ubuntu/node_modules/.bin
+    PATH=$PATH:/nudgepad/nudgepad/node_modules/.bin
+
+
+Uninstalling
+------------
+
+Stop NudgePad
+
+    npd stop
+
+Delete /nudgepad folder (WARNING: This deletes all your Project data)
+
+    rm -rf /nudgepad
+
+If you added a shortcut in your bash_profile, remove that:
+
+    vim ~.bash_profile
+
+Remove any domain records NudgePad created in your hosts file:
+
+    vim /etc/hosts
+
+On Nix, you may need to delete some users.
 
