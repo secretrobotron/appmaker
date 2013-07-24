@@ -1,0 +1,3 @@
+html tool.html menu.html bar.html ribbons.html components.html blankPage.html
+js Designer.js js events.js Shortcuts.js realtime.js
+css tool.css css

@@ -26,9 +26,9 @@ WebMaker.fetch = function () {
         })
         template.on('click', function () {
           var url = value.get('url').replace('https://webmaker.makes.org/', 'https://s3.amazonaws.com/makes.org/webmaker/') + '_'
-          Launcher.open('Boston')
-          Boston.menu.create()
-          Boston.import(url)
+          Launcher.open('Designer')
+          Designer.menu.create()
+          Designer.import(url)
         })
         $('#Makes').append(template)
         template.show()  

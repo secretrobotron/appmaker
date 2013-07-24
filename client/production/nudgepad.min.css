@@ -707,7 +707,7 @@ body {
   background-color: #427a14;
 }
 
-#BostonDimensions {
+#DesignerDimensions {
   display: none;
   position: absolute;
   top: 0;
@@ -723,7 +723,7 @@ body {
   z-index: 200;
 }
 
-#BostonCodePanel {
+#DesignerCodePanel {
   position: fixed;
   z-index: 5000;
   left: 0;
@@ -750,13 +750,13 @@ body {
   outline: 1px solid #5555ff;
 }
 
-.BostonEditHandle {
+.DesignerEditHandle {
   height: 16px;
   position: absolute;
   z-index: 200;
 }
 
-.BostonEditStyleHandle, .BostonLinkHandle {
+.DesignerEditStyleHandle, .DesignerLinkHandle {
   background-image : url(/nudgepad/public/images/pencil_lt.png);
   background-size: 14px;
   background-position : center;
@@ -774,7 +774,7 @@ body {
 }
 
 
-#BostonStage {
+#DesignerStage {
   position: relative;
   height: 637px;
   overflow-y: scroll;
@@ -785,14 +785,14 @@ body {
   width: 100%;
 }
 
-#BostonStageHead {
+#DesignerStageHead {
   height: 0;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-#BostonStageBody {
+#DesignerStageBody {
   height: 1000px;
   position: relative;
   background-color: white;
@@ -802,14 +802,14 @@ body {
 }
 
 /**
- * We add this as kind of a hack, because adding bottom padding to BostonStage has no effect.
+ * We add this as kind of a hack, because adding bottom padding to DesignerStage has no effect.
  */
-#BostonStageBottomPadding {
+#DesignerStageBottomPadding {
   height: 200px;
   background-color: rgb(233, 233, 233);
 }
 
-#BostonContextMenu {
+#DesignerContextMenu {
   position: fixed;
   top: 0;
   left: 0;
@@ -822,24 +822,24 @@ body {
   box-shadow: 0px 1px 3px rgba(0,0,0,.6);
 }
 
-#BostonContextMenu a {
+#DesignerContextMenu a {
   padding: 6px;
   border-bottom: 1px solid #333;
   display: block;
 }
 
-.BostonContextMenuSeparator {
+.DesignerContextMenuSeparator {
   height: 10px;
   border-bottom: 1px solid #aaa;
 }
 
-#BostonContextMenu a:hover {
+#DesignerContextMenu a:hover {
   background-color: #2a2a2a;
 }
 
 /*----------------Tool Bar-------------------*/
 
-#BostonBar {
+#DesignerBar {
   position: fixed;
   bottom: 0px;
   height: 50px;
@@ -851,27 +851,27 @@ body {
   text-align: left;
 }
 
-.BostonBarTab {
+.DesignerBarTab {
   float: left;
   margin-left: 10px;
   margin-top: 10px;
   cursor: pointer;
 }
 
-.BostonBarButton img {
+.DesignerBarButton img {
   padding-top: 12px;
   opacity: .4;
 }
 
-.BostonBarButton:hover img{
+.DesignerBarButton:hover img{
   opacity: .7;
 }
 
-.BostonBarButton:active img{
+.DesignerBarButton:active img{
   opacity: 1;
 }
 
-#BostonTabs {
+#DesignerTabs {
   float: right;
   max-width: 600px;
   overflow: hidden;
@@ -881,7 +881,7 @@ body {
   color: #777;
 }
 
-#BostonMenu {
+#DesignerMenu {
   background-color: #333;
   border-radius: 3px 0px 0px 0px;
   width: 200px;
@@ -896,38 +896,38 @@ body {
   bottom: 50;
 }
 
-#BostonMenu div{
+#DesignerMenu div{
   padding: 6px 30px;
   cursor: pointer;
 }
 
-#BostonMenu div:hover {
+#DesignerMenu div:hover {
   background-color: #2a2a2a;
 }
 
-#BostonMenu div:active {
+#DesignerMenu div:active {
   background-color: #1a1a1a;
 }
 
-#BostonTabs span {
+#DesignerTabs span {
   margin-right: 20px;
 }
 
-#BostonTabs span {
+#DesignerTabs span {
   cursor: pointer;
 }
 
-#BostonTabs span.BostonOpenPage {
+#DesignerTabs span.DesignerOpenPage {
   text-decoration: underline;
 }
 
-.BostonTimeline {
+.DesignerTimeline {
   line-height: 50px;
   font-size: 14px;
 /*  display: none; */
 }
 
-#BostonDeviceSwitcher {
+#DesignerDeviceSwitcher {
   display: inline-block;
   line-height: 50px;
   font-size: 14px;
@@ -939,40 +939,40 @@ body {
   user-select: none;
 }
 
-#BostonDeviceSwitcher:hover {
+#DesignerDeviceSwitcher:hover {
   color: rgba(230, 230, 230, 1);
 }
 
-#BostonTimelineHolder {
+#DesignerTimelineHolder {
   margin-left: 20px;
   opacity: 0.2;
   -webkit-transition: .25s;
   display: inline-block;
 }
 
-#BostonTimelineHolder #BostonTimeline {
+#DesignerTimelineHolder #DesignerTimeline {
   opacity: 0;
 }
 
-#BostonTimelineHolder:hover, #BostonTimelineHolder:hover #BostonTimeline {
+#DesignerTimelineHolder:hover, #DesignerTimelineHolder:hover #DesignerTimeline {
   opacity: 1;
   /* Broken on Firefox */
 }
 
-#BostonTimeline {
+#DesignerTimeline {
   vertical-align: middle;
 }
 
-#BostonTimelinePosition {
+#DesignerTimelinePosition {
   cursor: default;
 }
 
 
-#BostonTimelinePosition, #BostonTimelineClear {
+#DesignerTimelinePosition, #DesignerTimelineClear {
   color: rgba(230, 230, 230, 1);
 }
 
-#BostonBarMenuButton {
+#DesignerBarMenuButton {
   height: 50px;
   width: 50px;
   background-color: #1a86d6;
@@ -983,19 +983,19 @@ body {
   cursor: pointer;
 }
 
-#BostonBarMenuButton:hover {
+#DesignerBarMenuButton:hover {
   background-color: #3575b5;
 }
 
-#BostonBarMenuButton:active {
+#DesignerBarMenuButton:active {
   background-color: #2c659e;
 }
 
-.BostonLowlight {
+.DesignerLowlight {
    opacity: .2;
 }
 
-.BostonRibbon {
+.DesignerRibbon {
   position: fixed;
   left: 0px;
   width: 100%;
@@ -1007,17 +1007,17 @@ body {
   text-align: left;
 }
 
-#BostonComponentsList {
+#DesignerComponentsList {
   float: left;
 }
 
-.BostonComponentImg {
+.DesignerComponentImg {
   float: left;
   margin-left: 10px;
   margin-top: 10px;
 }
 
-#BostonUploadButton {
+#DesignerUploadButton {
   float: left;
   width: 70px;
   background-color: #555;
@@ -1034,15 +1034,15 @@ body {
   position: relative;
 }
 
-#BostonUploadButton:hover {
+#DesignerUploadButton:hover {
   background-color: #444;
 }
 
-#BostonUploadButton:active {
+#DesignerUploadButton:active {
   background-color: #3a3a3a;
 }
 
-#BostonImagesList .Image {
+#DesignerImagesList .Image {
   float: left;
   height: 60px;
   width: 60px;
@@ -1055,7 +1055,7 @@ body {
   padding: 0;
 }
 
-#BostonImagesList .Image img {
+#DesignerImagesList .Image img {
   padding: 0;
   max-height: 50px;
   max-width: 50px;
@@ -1081,7 +1081,7 @@ body {
 }
 
 
-/** Todo: put these under #BostonStage namespace? **/
+/** Todo: put these under #DesignerStage namespace? **/
 .scrap {
   z-index: 1;
   word-wrap: break-word;
@@ -1104,7 +1104,7 @@ body {
   outline: 1px solid #5555ff;
 }
 
-.selection.BostonHighlightedScrap {
+.selection.DesignerHighlightedScrap {
   outline: 2px solid blue;
   box-shadow: 1px 1px 8px 8px blue;
   z-index: 100;
@@ -1584,7 +1584,7 @@ License: MIT
 .sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner
 {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);
-}#BostonStyleEditor {
+}#DesignerStyleEditor {
   position: absolute;
   width: auto;
   height: auto;
@@ -1632,12 +1632,12 @@ License: MIT
   left: 7px;
 }
 
-#BostonStyleEditor #blockContainer {
+#DesignerStyleEditor #blockContainer {
   padding: 10px;
   width: 290px;
 }
 
-#BostonStyleEditor .editorButton {
+#DesignerStyleEditor .editorButton {
   float: left;
   height: 40px;
   width: 40px;
@@ -1648,20 +1648,20 @@ License: MIT
   text-align: center;
 }
 
-#BostonStyleEditor .editorButton img{
+#DesignerStyleEditor .editorButton img{
   padding-top: 12px;
   opacity: .6;
 }
 
-#BostonStyleEditor .editorButton:hover{
+#DesignerStyleEditor .editorButton:hover{
   background-color: #555;
 }
 
-#BostonStyleEditor .editorButton:active{
+#DesignerStyleEditor .editorButton:active{
   background-color: #323232;
 }
 
-#BostonStyleEditor .editorOption{
+#DesignerStyleEditor .editorOption{
   cursor: pointer;
   margin: 0px 10px;
   display : inline-block;
@@ -1671,15 +1671,15 @@ License: MIT
   float: left;
 }
 
-#BostonStyleEditor .selectedEditorOption{
+#DesignerStyleEditor .selectedEditorOption{
   color: #FFF;
 }
 
-#BostonStyleEditor textarea {
+#DesignerStyleEditor textarea {
   resize: none;
 }
 
-#BostonStyleEditorModal {
+#DesignerStyleEditorModal {
   width : 100%;
   height : 100%;
   top : 0;
@@ -1689,7 +1689,7 @@ License: MIT
   background: transparent;
 }
 
-#BostonStyleEditorCssEditor {
+#DesignerStyleEditorCssEditor {
   position: relative;
   padding : 6px 3px;
   font-family : monospace;
@@ -1705,7 +1705,7 @@ License: MIT
   color: #CCC;
 }
 
-#BostonStyleEditorTextEditor{
+#DesignerStyleEditorTextEditor{
   display: none;
   padding: 10px;
 }
@@ -1719,29 +1719,29 @@ License: MIT
   background-color : #333;
 }
 
-#BostonStyleEditor .editorHeader{
+#DesignerStyleEditor .editorHeader{
   color: #888;
   font-size: 13px;
   margin-bottom: 5px;
   padding-top: 15px;
 }
 
-#BostonStyleEditor .columnLeft{
+#DesignerStyleEditor .columnLeft{
   width: 140px;
   float: left;
   margin-right: 10px;
 }
 
-#BostonStyleEditor .clear{
+#DesignerStyleEditor .clear{
   clear: both;
 }
 
-#BostonStyleEditor .columnRight{
+#DesignerStyleEditor .columnRight{
   float: left;
   width: 140px;
 }
 
-#BostonStyleEditor .toolButton {
+#DesignerStyleEditor .toolButton {
   height: 34px;
   font-size: 13px;
   line-height: 34px;
@@ -1756,43 +1756,43 @@ License: MIT
   margin-right: 1px;
 }
 
-#BostonStyleEditor .toolButton img {
+#DesignerStyleEditor .toolButton img {
   opacity: .6;
   padding-top: 9px;
 }
 
-#BostonStyleEditor .toolButton:hover {
+#DesignerStyleEditor .toolButton:hover {
   background-color: #555;
 }
 
-#BostonStyleEditor .toolButton:active {
+#DesignerStyleEditor .toolButton:active {
   background-color: #323232;
 }
 
-#BostonStyleEditor .toolButtonOne{
+#DesignerStyleEditor .toolButtonOne{
   border-radius: 3px 0px 0px 3px;
 }
 
-#BostonStyleEditor .toolButtonTwo{
+#DesignerStyleEditor .toolButtonTwo{
 }
 
-#BostonStyleEditor .toolButtonThree{
+#DesignerStyleEditor .toolButtonThree{
   border-radius: 0px 3px 3px 0px;
 }
 
-#BostonStyleEditor #alignmentOne{
+#DesignerStyleEditor #alignmentOne{
   background-image : url(/nudgepad/public/images/left_lt.png);
 }
 
-#BostonStyleEditor #alignmentTwo{
+#DesignerStyleEditor #alignmentTwo{
   background-image : url(/nudgepad/public/images/center_lt.png);
 }
 
-#BostonStyleEditor #alignmentThree{
+#DesignerStyleEditor #alignmentThree{
   background-image : url(/nudgepad/public/images/right_lt.png);
 }
 
-#BostonStyleEditor #fontFamily {
+#DesignerStyleEditor #fontFamily {
   width: 140px;
   overflow: hidden;
   text-align: left;
@@ -1830,42 +1830,42 @@ License: MIT
   border-radius: 3px;
 }
 
-#BostonStyleEditor #fontFamilyOne{
+#DesignerStyleEditor #fontFamilyOne{
   font-family: 'Arial';
 }
 
-#BostonStyleEditor #fontFamilyTwo{
+#DesignerStyleEditor #fontFamilyTwo{
   font-family: 'Georgia';
 }
 
-#BostonStyleEditor #fontFamilyThree{
+#DesignerStyleEditor #fontFamilyThree{
   font-family: 'Times';
 }
 
-#BostonStyleEditor #fontColorOne{
+#DesignerStyleEditor #fontColorOne{
   color: #333;
 }
 
-#BostonStyleEditor #fontColorTwo{
+#DesignerStyleEditor #fontColorTwo{
   color: #888;
 }
 
-#BostonStyleEditor #fontColorThree{
+#DesignerStyleEditor #fontColorThree{
   color: #fff;
   background-color: #555;
 }
 
-#BostonStyleEditor #textStyleTwo{
+#DesignerStyleEditor #textStyleTwo{
   text-decoration: underline;
 }
 
-#BostonStyleEditor .transparentButton{
+#DesignerStyleEditor .transparentButton{
   background-image : url(/nudgepad/public/images/invisible.png);
   background-position: center;
   background-repeat: no-repeat;
 }
 
-#BostonStyleEditorTopBar {
+#DesignerStyleEditorTopBar {
   height : 40px;
   background-color: #2a2a2a;
   position : relative;
@@ -1873,14 +1873,14 @@ License: MIT
 }
 
 
-#BostonStyleEditorBottomBar {
+#DesignerStyleEditorBottomBar {
   height : 40px;
   position : relative;
   background : #777;
   
 }
 
-#BostonStyleEditorSaveButton {
+#DesignerStyleEditorSaveButton {
   width : 60px;
   height : 40px;
   float: right;
@@ -1895,23 +1895,23 @@ License: MIT
   cursor: pointer;
 }
 
-#BostonStyleEditorSaveButton {
+#DesignerStyleEditorSaveButton {
   background-color: #11a4ed;
 }
 
-#BostonStyleEditorSaveButton:hover{
+#DesignerStyleEditorSaveButton:hover{
   background-color: #0c8ecf;
 }
 
-#BostonStyleEditorSaveButton:active{
+#DesignerStyleEditorSaveButton:active{
     background-color: #055780;
 }
 
-#BostonStyleEditorMoveUp:hover, #BostonStyleEditorMoveDown:hover, #BostonStyleEditorLock:hover, #BostonStyleEditorLink:hover{
+#DesignerStyleEditorMoveUp:hover, #DesignerStyleEditorMoveDown:hover, #DesignerStyleEditorLock:hover, #DesignerStyleEditorLink:hover{
   opacity: .7;
 }
 
-#BostonStyleEditorMoveUp:active, #BostonStyleEditorMoveDown:active, #BostonStyleEditorLock:active, #BostonStyleEditorLink:active{
+#DesignerStyleEditorMoveUp:active, #DesignerStyleEditorMoveDown:active, #DesignerStyleEditorLock:active, #DesignerStyleEditorLink:active{
   opacity: 1;
 }
 #FilesExplorerHolder {

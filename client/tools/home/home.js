@@ -2,8 +2,8 @@ var Home = new Tool('Home')
 
 Home.renderMenu = function () {
   $('#HomeColumn').html('')
-  var tools = _.without(Tool.tools, 'Home', 'Boston', 'Files', 'Blog', 'AppMaker', 'Team')
-  tools.unshift('Boston', 'Files', 'Team', 'Blog', 'AppMaker')
+  var tools = _.without(Tool.tools, 'Home', 'Designer', 'Files', 'Blog', 'AppMaker', 'Team')
+  tools.unshift('Designer', 'Files', 'Team', 'Blog', 'AppMaker')
   for (var i in tools) {
     var tool = window[tools[i]]
     $('#HomeColumn').append(
