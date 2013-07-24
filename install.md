@@ -42,6 +42,8 @@ NudgePad requires node v0.8.*. NudgePad does NOT currently work reliably with no
     sudo npm install -g
     # then install it locally, because npm is weird :)
     npm install
+    # move node_modules to parent dir
+    mv /nudgepad/nudgepad/node_modules /nudgepad/nudgepad
 
 ### Start NudgePad
 
@@ -123,6 +125,8 @@ NudgePad requires node v0.8.*. NudgePad does NOT currently work reliably with no
     sudo npm install -g
     # then install it locally, because npm is weird :)
     npm install
+    # move node_modules to parent dir
+    mv /nudgepad/nudgepad/node_modules /nudgepad/nudgepad
 
 ### Start NudgePad
 
