@@ -10,10 +10,8 @@ fixPermissions ()
   chmod 700 $backupPath
   chmod 700 $privatePath
   
-  if isMac
+  if isNix
     then
-      echo Nothing to do on Mac
-    else
       sudo chown $USER:projects $dataPath
       sudo chown $USER:projects $runningPath
       sudo chown $USER:projects $portsPath
