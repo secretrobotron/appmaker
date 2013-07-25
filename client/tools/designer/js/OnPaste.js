@@ -19,10 +19,10 @@ Designer.onpaste = function(event) {
     Designer.pasteScraps(pastedText)
   
   else if (type === 'html')
-    Designer.pasteScraps($.htmlToScraps(pastedText))
+    Designer.pasteHtml(pastedText)
   
-  else if (type === 'css')
-    Designer.pasteCss(pastedText)
+//  else if (type === 'css')
+//    Designer.pasteCss(pastedText)
   
   // paste image
   
@@ -43,6 +43,10 @@ Designer.onpaste = function(event) {
   */
   
   mixpanel.track('I pasted something')
+}
+
+Designer.pasteHtml = function(html) {
+  Designer.pasteScraps($.htmlToScraps(html))
 }
 
 Designer.pasteScraps = function(pastedText) {
