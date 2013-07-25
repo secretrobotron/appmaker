@@ -71,6 +71,14 @@ Tool.prototype.restart = function () {
   this.open()
 }
 
+Tool.prototype.test = function () {
+  var name = this.get('name')
+  $.get('/nudgepad/tools/' + name + '/tests.html', function (data) {
+    $('body').append(data)
+    $('body').append('<script type="text/javascript" src="/nudgepad/tools/' + name + '/tests.js"></script>')
+  })
+}
+
 Tool.prototype.toggle = function () {
   if (this._open)
     this.close()
