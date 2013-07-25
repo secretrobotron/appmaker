@@ -1,4 +1,5 @@
-var exec = require('child_process').exec
+var exec = require('child_process').exec,
+    fs = require('fs')
 
 var Exporter = function (app) {
   
