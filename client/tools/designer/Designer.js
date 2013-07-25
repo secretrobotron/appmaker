@@ -35,4 +35,7 @@ Designer.returnFalse = function (){
   return false
 }
 
+Designer.test = function () {
+  $('body').append('<script type="text/javascript" src="/nudgepad/tools/designer/tests.js"></script>')
+}
 
