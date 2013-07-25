@@ -24,6 +24,7 @@
     "request": "*",
     "wrench": "*",
     "async": "*",
+    "mime" : "*",
     "marked": "*",
     "utile": "*",
     "http-proxy": "=0.10.1",
