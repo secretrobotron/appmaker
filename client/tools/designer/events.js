@@ -34,8 +34,8 @@ Designer.on('open', function () {
   // Prevent Images from dragging on Firefox
   $(document).on('dragstart', 'img', function(event) { event.preventDefault()})
   
-  // Open the last open page, or create a new untitled page.
-  var page = store.get('activePage')
+  // Open the last open page, or index page, or create a new untitled page.
+  var page = store.get('activePage') || 'index'
   if (!Project.get('pages ' + page))
     Designer.menu.create()
   else
