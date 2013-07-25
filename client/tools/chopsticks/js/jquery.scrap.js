@@ -61,6 +61,7 @@ $.fn.selectMe = function (quiet) {
   
 
   Chopsticks.MoveHandle.create(scrap)
+  Chopsticks.LinkHandle.create(scrap)
   
   if (!quiet)
     Chopsticks.trigger('selection')
