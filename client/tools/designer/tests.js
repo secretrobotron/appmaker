@@ -23,4 +23,9 @@ Designer.pasteHtml('<a>Hello world</a>')
 equal(1, $('#DesignerStageBody').children().length)
 
 
+// https://github.com/nudgepad/nudgepad/issues/332
+Designer.menu.create()
+Designer.pasteHtml('<head><title id="title">Hello world</title></head>')
+equal($('#Test332').text(), Designer.page.toString())
+
 

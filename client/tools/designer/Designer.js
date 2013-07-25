@@ -36,6 +36,9 @@ Designer.returnFalse = function (){
 }
 
 Designer.test = function () {
-  $('body').append('<script type="text/javascript" src="/nudgepad/tools/designer/tests.js"></script>')
+  $.get('/nudgepad/tools/designer/tests.html', function (data) {
+    $('body').append(data)
+    $('body').append('<script type="text/javascript" src="/nudgepad/tools/designer/tests.js"></script>')
+  })
 }
 
