@@ -1,3 +1,8 @@
+This is forked (in collaboration with) the Nudgepad project.
+
+The Nudgepad README follows, until we create our own.
+
+
 NudgePad BETA
 =============
 
