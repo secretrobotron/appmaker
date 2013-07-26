@@ -829,11 +829,22 @@ body {
   z-index: 100;
 }
 
-
 .ChopsticksComponents {
   display: none;
 }
 
+.ChopsticksLinkHandle {
+  position: absolute;
+  z-index: 200;
+  color: white;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.ChopsticksLinkHandle div {
+  width: 100%;
+  height: 100%;
+}
 
 #FilesExplorerHolder {
   cursor: pointer;
