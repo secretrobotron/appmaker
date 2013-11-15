@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 define(
-  ["jquery", "localized", "inflector", "designer-utils", "jquery-ui", "designer-keyboard"],
+  ["jquery", "localized", "inflector", "designer/utils", "jquery-ui", "designer/keyboard"],
   function($, localized, Inflector, Utils) {
     "use strict";
 
