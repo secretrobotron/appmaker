@@ -64,10 +64,10 @@
           var communicators, handlertype;
 
           if(this.channelType == "broadcast") {
-            communicators = this.component.broadcasts;
+            communicators = this.component.ceci.broadcasts;
             handlerType = "from";
           } else {
-            communicators = this.component.listeners;
+            communicators = this.component.ceci.listeners;
             handlerType = "for";
           }
 
