@@ -177,6 +177,7 @@
 	"You've been promoted to Postmaster!": "You've been promoted to Postmaster!",
 	"You've been promoted to...": "You've been promoted to...",
 	"Your app couldn't be published.  The server said:": "Your app couldn't be published.  The server said:",
+	"Your app could not be saved at this time. Please try again.": "Your app could not be saved at this time. Please try again.",
 	"Your app has been published to": "Your app has been published to <a class=\"modal-publish-link\" target=\"_blank\"></a>",
 	"Your app has been successfully published" : "Your app has been successfully published, and is hosted for you at:",
 	"Your Appmaker Remix is ready!": "Your Appmaker Remix is ready!",
