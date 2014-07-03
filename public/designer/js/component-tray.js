@@ -121,6 +121,8 @@ define(
         return item;
       },
       addComponentWithName: function(name) {
+        if (DesignerTray.isKnownComponent(name)) return;
+
         var added = false;
         for(var i = 0; i < categories.names.length; i++){
           var category = categories.names[i];
@@ -145,6 +147,8 @@ define(
           }
           document.querySelector(".category-container.other").appendChild(item);
         }
+
+        knownComponents.push(name);
       },
       sortComponents: function (container) {
         // Sorts components in each category container
