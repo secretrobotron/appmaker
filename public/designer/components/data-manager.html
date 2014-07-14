@@ -58,7 +58,18 @@
         color: #212429;
         background: #CCC;
       }
+
+      :host label {
+        display: block;
+      }
+
+      :host #save-to-published-app {
+        width: auto;
+        margin-right: 5px;
+      }
     </style>
+    <label><input id="save-to-published-app" type="checkbox" value="{{saveToPublishedApp}}">Publish this data when app is published</label>
+    <br />
     <select hidden?="{{ collections.length == 0 }}" value="{{currentCollectionIndex}}">
       <template repeat="{{collection, index in collections}}">
         <option value="{{index}}">{{collection.name}}</option>
@@ -126,6 +137,7 @@
     Polymer('data-manager', {
       collections: [],
       currentCollectionIndex: 0,
+      saveToPublishedApp: false,
       createFieldManager: function(field) {
         return {
           name: field.name,
