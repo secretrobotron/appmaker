@@ -1,8 +1,14 @@
+<div class="deprecation" id="deprecation">
+  <div class="closeWarning" id="closeWarning" onclick="this.parentNode.remove()">X</div>
+    Mozilla's tools for teaching the Web are evolving. Beginning June 19, you will not be able to create or edit Appmaker projects. To learn more, read <a href="http://mzl.la/1ACom34" target="_blank">our blog post.</a>
+</div>
+
 <div class="page-wrapper">
 
   <nav class="top-nav clearfix">
     <div class="logo"></div>
-    <ceci-card-nav></ceci-card-nav>
+
+   <ceci-card-nav></ceci-card-nav>
     <div class="nav-ui">
       <% include ../public/vendor/webmaker-language-picker/template/partial.ejs %>
       <user-state<% if (allowCustomComponents) {%> customcomponents="true"<%}%>></user-state>
