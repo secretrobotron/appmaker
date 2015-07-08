@@ -314,6 +314,7 @@ if (process.env.MAKEAPI_URL) {
 }
 
 module.exports = app;
+var foo = false;
 
 if (!module.parent) {
   // Load components from various sources
@@ -331,9 +332,12 @@ if (!module.parent) {
         if (err) return console.error(err);
         bundleJavascript(function (err) {
           if (err) return console.error(err);
+          if (!foo) {
+          foo = true;
           http.createServer(app).listen(app.get('port'), function() {
             console.log("Express server listening on port " + app.get('port'));
           });
+        }
         });
       });
     });
